@@ -740,5 +740,6 @@ def deleteActivityMessage(request, pk):
 def qubeCommunityUserProfile(request, pk):
 
     user = User.objects.get(id=pk)
+
     context = {'user': user}
     return render(request, 'social/qube_community_user_profile.html', context)
