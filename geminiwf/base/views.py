@@ -628,7 +628,8 @@ def qubeCommunityHomePage(request):
     total_community_topics = qubeCommunityTopic.objects.all()
     total_community_rooms = community_rooms.count()
 
-    room_messages = qubeCommunityMessage.objects.all()
+    room_messages = qubeCommunityMessage.objects.filter(
+        Q(room__topic__community_topic_name__icontains=q))
 
     context = {'community_rooms': community_rooms,
                'total_community_topics': total_community_topics, 'total_community_rooms': total_community_rooms, 'room_messages': room_messages}
@@ -739,10 +740,5 @@ def deleteActivityMessage(request, pk):
 def qubeCommunityUserProfile(request, pk):
 
     user = User.objects.get(id=pk)
-    room_messages = user.messages.all()
-    total_community_topics = qubeCommunityTopic.objects.all()
-    room = user.room_set.all()
-
-    context = {'room': room, 'room_messages': room_messages,
-               'total_community_topics': total_community_topics, 'user': user}
-    return render(context, 'social/qube_community_user_profile.html', context)
+    context = {'user': user}
+    return render(request, 'social/qube_community_user_profile.html', context)
