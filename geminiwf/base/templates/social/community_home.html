@@ -1,0 +1,23 @@
+<style>
+    .community-home {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="community-home">
+    <div>
+        {% include 'social/Models_component_social.html' %}
+    </div>
+    <div>
+        <h1>community home</h1>
+    </div>
+</div>
+
+
+
+{% endblock %}

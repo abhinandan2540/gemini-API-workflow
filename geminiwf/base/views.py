@@ -613,3 +613,8 @@ def qubeSocialFront(request):
 
 # starting from the scratch
 # qube community home page
+
+
+def communityHome(request):
+    context = {}
+    return render(request, 'social/community_home.html', context)

@@ -67,6 +67,9 @@ urlpatterns = [
     # starting of QUBE social
     path('qubeSOCIAL/', views.qubeSocialFront, name='qubeSocial'),
 
+    path('communityHome/', views.communityHome, name='communityHome'),
+
+
 
 
 
