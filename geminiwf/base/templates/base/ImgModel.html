@@ -1,0 +1,62 @@
+<style>
+    .img_model {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="img_model">
+    <div>
+        {% include 'base/Models_component_ai.html' %}
+    </div>
+
+    <div>
+        <div>
+            <h1>QUBE IMAGE MODEL</h1>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <form action="{% url 'imgModel' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" accept="image/*" name="img_query">
+            <input type="text" name="text_query" value="{{ text_query }}">
+            <button>Submit</button>
+        </form>
+        <br>
+        <br>
+        <hr>
+        <div>
+            {% for line in gemini_img_text_response %}
+            <div>
+                <p>{{ line|safe }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <h2>QUBE IMG FEED</h2>
+        <div>
+            {% for chat in user_img_text_chats %}
+            <div>
+                <h3><a href="{% url 'imageFullResponseView' chat.id  %}">{{ chat.user_text_prompt }}</a></h3>
+                <span><a href="{% url 'deleteImageQuery' chat.id %}">Delete</a></span>
+                <img src="{{ chat.user_image_prompt.url }}" alt="uploaded image"
+                    style="width: 400px; height: 200px; border-radius: 10px;">
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

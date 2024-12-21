@@ -1,0 +1,36 @@
+<style>
+    .img-full-response {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<button><a href="{% url 'imgModel' %}">Go Back</a></button>
+
+
+<div class="img-full-response">
+
+    <div>
+        <h3>{{ imgQuery.user }}</h3>
+        <p>{{ imgQuery.user_text_prompt }}</p>
+        <img src="{{ imgQuery.user_image_prompt.url }}" alt=""
+            style="width: 640px; height: 480px; border-radius: 10px;">
+    </div>
+
+    <div>
+        <p>{{ imgQuery.response }}</p>
+        <p>{{ imgQuery.created }}</p>
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}

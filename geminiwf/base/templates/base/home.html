@@ -1,0 +1,38 @@
+<style>
+    .all_components {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+</style>
+
+{% extends 'main.html' %}
+
+<!-- having problem in rendering greet -->
+<div>
+    {% if greet %}
+    <div>
+        <h3>{{ greet }}</h3>
+    </div>
+    {% endif %}
+</div>
+
+{% block content %}
+
+
+<div class="all_components">
+
+
+    <div class="QUBE-AI">
+        {% include 'base/Models_component_ai.html' %}
+    </div>
+
+    <div class="QUBE-SOCIAL">
+        {% include 'social/Models_component_social.html' %}
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <form method="POST">
+        {% csrf_token %}
+
+        <h2>Are you sure to delete this {{ obj }}?</h2>
+        <button><a href="{% url 'qubeVisionVideoQuery' %}">Go Back</a></button>
+        <button>Delete</button>
+    </form>
+</div>
+
+
+
+{% endblock %}

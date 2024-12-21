@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <div>
+        <button><a href="{% url 'qubeAudioQuery' %}">Go Back</a></button>
+    </div>
+    <div>
+        <h3>{{ audio.user_text }}</h3>
+        <audio src="{{ audio.user_audio.url }}" controls></audio>
+        <p>{{ audio.model_response }}</p>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

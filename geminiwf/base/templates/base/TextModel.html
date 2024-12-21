@@ -1,0 +1,64 @@
+<!-- Text Model of Gemini  -->
+<style>
+    .text_model {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="text_model">
+
+    <div class="model-component">
+        {% include 'base/Models_component_ai.html' %}
+    </div>
+
+
+    <div class="qube-text-model">
+        <div>
+            <h1>QUBE TEXT MODEL</h1>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <form action="{% url 'textModel' %}" method="GET">
+            <label for="">Message QUBE:</label>
+            <input type="text" name="query" value="{{ query }}">
+            <button>Select</button>
+        </form>
+        <br>
+        <br>
+        <hr>
+        <div>
+            <div class="formatted_content">
+                {% for line in results %}
+                <div>
+                    <div class="formatted-line">{{ line|safe }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="text-history">
+        <!-- for text history -->
+        <h1>QUBE TEXT FEED</h1>
+        <ul>
+            {% for chat in text_history %}
+            <div>
+                <li>
+                    <h3><a href="{% url 'textFullResponseView' chat.id %}">{{ chat.query }}</a></h3>
+                    <a href="{% url 'deleteTextModelHistory' chat.id %}">Delete</a>
+                    <hr>
+                </li>
+            </div>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

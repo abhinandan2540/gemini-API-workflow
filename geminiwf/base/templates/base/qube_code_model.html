@@ -1,0 +1,62 @@
+<style>
+    .qube-code-feed {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
+
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="qube-code-feed">
+    <div>
+        {% include 'base/Models_component_ai.html' %}
+    </div>
+    <div>
+        <div>
+            <h1>QUBE CODE MODEL</h1>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <form action="" method="GET">
+            {% csrf_token %}
+
+            <label for="">Message QUBE:</label>
+            <input type="text" name="text_query">
+            <input type="submit" value="Confrim">
+        </form>
+        <br>
+        <hr>
+        <div>
+            {% for code in qube_code_query %}
+            <div>
+                <p>{{ code|safe }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <h2> QUBE CODE FEED</h2>
+        <hr>
+        <div>
+            {% for chat in qube_code_feed %}
+            <div>
+                <ul>
+                    <li>
+                        <h3><a href="{% url 'qubeCodeFullRes' chat.id %}">{{ chat.user_input_prompt }}</a></h3>
+                        <a href="{% url 'deleteQubeCode' chat.id %}">Delete</a>
+                        <hr>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

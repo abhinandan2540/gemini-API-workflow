@@ -1,0 +1,30 @@
+<style>
+    .model-social {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="model-social">
+    <div>
+        {% include 'social/Models_component_social.html' %}
+    </div>
+    <div>
+        <h3>Qube AI is a cutting-edge platform that harnesses the power of artificial intelligence to offer a wide range
+            of capabilities. From automating routine tasks to providing insightful data analysis and enhancing user
+            interactions, Qube AI is designed to streamline operations and boost productivity. Whether you're looking to
+            implement smart chatbots, optimize business processes, or gain deeper insights from your data, Qube AI
+            delivers versatile and robust solutions tailored to your needs. Embrace the future with Qube AI and
+            transform the way you work!</h3>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

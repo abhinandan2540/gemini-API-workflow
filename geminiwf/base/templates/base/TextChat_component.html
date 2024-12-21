@@ -1,0 +1,62 @@
+<style>
+    .interactive-chat-model {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div class="interactive-chat-model">
+
+
+    <div>
+        {% include 'base/Models_component_ai.html' %}
+    </div>
+
+    <div>
+        <div>
+            <h1>QUBE CHAT MODEL</h1>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <form action="{% url 'intactChat' %}" method="GET">
+            <label for="">USER:</label>
+            <input type="text" name="user_chat_prompt" value="{{ user_chat_prompt}}" placeholder="Message QUBE...">
+        </form>
+        <br>
+        <br>
+        <hr>
+        <div>
+            <div class="formatted_content">
+                <p>QUBE:</p>
+                {% for line in chat_results %}
+                <div>
+                    <div class="formatted-line">
+                        <p>{{ line|safe }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h1>CHAT INTERAC FEED</h1>
+        {% for chat in user_interac_chat %}
+        <div>
+            <h3><a href="{% url 'chatFullResponseView' chat.id %}">{{ chat.user_chat_prompt }}</a></h3>
+            <a href="{% url 'deleteChat' chat.id %}">Delete</a>
+            <hr>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock %}

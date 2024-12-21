@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+
+    <div>
+        <button><a href="{% url 'intactChat' %}">Go Back</a></button>
+    </div>
+
+
+    <h2>{{ chat_query.user_chat_prompt }}</h2>
+    <p>{{ chat_query.model_response }}</p>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

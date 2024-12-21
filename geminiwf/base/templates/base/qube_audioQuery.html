@@ -1,0 +1,65 @@
+<style>
+    .qube-audio-component {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+<div class="qube-audio-component">
+    <div>
+        {% include 'base/Models_component_ai.html' %}
+    </div>
+
+    <div>
+        <div>
+            <h1>QUBE AUDIO MODEL</h1>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <input type="file" accept="audio/*" name="audio_query">
+            <input type="text" name="text_query">
+            <button>Submit</button>
+        </form>
+        <br>
+        <hr>
+        <div>
+            {% for line in qube_audio_query %}
+            <div>
+                <p>{{ line|safe }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+        <h2>QUBE AUDIO FEED</h2>
+        <div>
+            {% for chat in qube_audio_feed %}
+            <div>
+                <ul>
+                    <li>
+                        <h3><a href="{% url 'qubeAudioFullResponse'  chat.id %}">{{ chat.user_text }}</a></h3>
+                        <audio src="{{ chat.user_audio.url }}" controls></audio>
+                        <a href="{% url 'deleteAudioQuery' chat.id %}">Delete</a>
+                        <hr>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

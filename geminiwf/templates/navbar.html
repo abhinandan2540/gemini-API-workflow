@@ -1,0 +1,25 @@
+<style>
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+
+<div class="navbar-container">
+
+    <div>
+        <h1><a href="{% url 'home' %}">QUBE</a></h1>
+
+    </div>
+
+    <div>
+        {% if request.user.is_authenticated %}
+        <h2> Hello {{ request.user }} </h2>
+        <h2><a href="{% url 'logoutUser' %}">logout</a></h2>
+        {% else %}
+        <h2><a href="{% url 'loginUser' %}">Login</a></h2>
+        {% endif %}
+    </div>
+
+</div>
+<hr>

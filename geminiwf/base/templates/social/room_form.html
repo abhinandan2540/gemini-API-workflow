@@ -1,0 +1,35 @@
+<style>
+    .create-room-component {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="create-room-component">
+
+    <div>
+        {% include 'social/Models_component_social.html' %}
+    </div>
+
+    <div>
+        <h2>Create Room</h2>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {{ room_form }}
+
+            <input type="submit" value="Confrim">
+        </form>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

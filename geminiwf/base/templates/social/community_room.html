@@ -1,0 +1,75 @@
+<style>
+    .community-room {
+        display: grid;
+        grid-template-columns: 1fr 1fr 3fr 1fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="community-room">
+
+    <div>
+        {% include 'social/Models_component_social.html' %}
+    </div>
+
+    <div>
+        {% include 'social/qube_community_topic_component.html' %}
+    </div>
+
+
+    <div>
+        <h1>{{ room.community_room_name }}</h1>
+        <h3> Topic-{{ room.topic.community_topic_name }}</h3>
+        <span> HOSTED BY- @{{ room.host.username }}</span>
+        <hr>
+        <h2>Conservations</h2>
+        <hr>
+        <div>
+            {% for message in room_messages %}
+            <div>
+                <small>@{{ message.user }} {{ message.created|timesince }} </small>
+                {% if request.user == message.user %}
+                <p>{{ message.body }}</p>
+                <a href="{% url 'deleteCommunityMessage' message.id %}">Delete</a>
+                {% endif %}
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+        <div>
+            {% if request.user.is_authenticated %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Message..." name="body">
+            </form>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div>
+        <h2>PARTICIPANTS</h2>
+        <hr>
+        <div>
+            {% for user in participants %}
+            <div>
+                <p>@{{ user.username }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+{% endblock %}

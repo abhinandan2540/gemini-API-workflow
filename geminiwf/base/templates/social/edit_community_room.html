@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <div>
+        <button><a href="{% url 'qubeCommunityHome' %}">Go Back</a></button>
+    </div>
+
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {{ form }}
+            <input type="submit" value="Confrim">
+        </form>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

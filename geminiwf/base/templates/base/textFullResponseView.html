@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <div>
+        <button><a href="{% url 'textModel' %}">Back to Text Model</a></button>
+    </div>
+
+    <strong>
+        <p>{{ chat.user }}</p>
+    </strong>
+    <div>
+        <p>{{ chat.query }}</p>
+        <p>{{ chat.created }}</p>
+        <p>{{ chat.response }}</p>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

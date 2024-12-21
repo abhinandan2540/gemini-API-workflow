@@ -1,0 +1,63 @@
+<style>
+    .qube_vision_activity {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="qube_vision_activity">
+    <div>
+        {% include 'base/Models_component_ai.html' %}
+    </div>
+
+    <div>
+        <div>
+            <h1>QUBE VISION IMAGE</h1>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <form action="{% url 'qubeVisionImage' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+
+            <input type="file" accept="image/*" name="imageQuery" multiple>
+            <input type="text" name="textQuery">
+            <button>Submit</button>
+        </form>
+        <br>
+        <br>
+        <hr>
+        <div>
+            {% for line in vision_img_text_response %}
+            <div>
+                <p>{{ line|safe }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+        <h1>QUBE VISION FEED</h1>
+        <hr>
+        <div>
+            {% for chat in qube_vision_img_text %}
+            <div>
+                <h3><a href="{% url 'fullResponseQubeVision' chat.id %}">{{ chat.user_text_query }}</a></h3>
+                <a href="{% url 'deleteQubeVisionImage' chat.id %}">Delete</a>
+                <img src="{{ chat.user_img_query.url }}" alt="uploaded images"
+                    style="width: 400px; height: 200px; border-radius: 10px;">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

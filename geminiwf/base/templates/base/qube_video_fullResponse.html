@@ -1,0 +1,35 @@
+<style>
+    .video-full-response {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div>
+    <button><a href="{% url 'qubeVisionVideoQuery' %}">Go Back</a></button>
+</div>
+
+<div class="video-full-response">
+    <div>
+        <h2>{{ qube_video_full.user_text_prompt }}</h2>
+        <video src="{{ qube_video_full.user_video_prompt.url }}"
+            style="width: 640px; height: 480px; border-radius: 10px;" controls> </video>
+    </div>
+    <div>
+        <p>{{ qube_video_full.model_response }}</p>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

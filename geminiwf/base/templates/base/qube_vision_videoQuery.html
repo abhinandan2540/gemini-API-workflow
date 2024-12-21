@@ -1,0 +1,65 @@
+<style>
+    .qube_video_feed {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div class="qube_video_feed">
+    <div>
+        {% include 'base/Models_component_ai.html' %}
+    </div>
+    <div>
+        <h1>QUBE VISION VIDEO</h1>
+        <br>
+        <hr>
+        <br>
+        <br>
+        <form action="{% url 'qubeVisionVideoQuery' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <input type="file" accept="video/*" name="video_query">
+            <input type="text" name="text_query">
+            <button>Search</button>
+        </form>
+        <br>
+        <br>
+        <hr>
+        <div>
+            {% for line in vision_img_video_response %}
+            <div>
+                <p>{{ line|safe }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+        <h1>QUBE VIDEO FEED</h1>
+        <hr>
+        <div>
+            {% for chat in qube_video_feed %}
+            <div>
+                <ul>
+                    <li>
+
+                        <h3><a href="{% url 'qubeVideoFullResponse' chat.id %}">{{ chat.user_text_prompt }}</a></h3>
+                        <video src="{{ chat.user_video_prompt.url }}"
+                            style="width: 320px; height: 240px; border-radius: 10px;" controls> </video>
+                        <a href="{% url 'deleteQubeVideo' chat.id %}">Delete</a>
+                        <hr>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

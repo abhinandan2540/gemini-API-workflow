@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+<div>
+    <div>
+        <button><a href="{% url 'qubeCodeModel' %}">Go Back</a></button>
+    </div>
+    <div>
+        <h3>{{ qube_code_full.user_input_prompt }}</h3>
+        <p>{{ qube_code_full.model_response }}</p>
+    </div>
+</div>
+
+
+
+{% endblock %}

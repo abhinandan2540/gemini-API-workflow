@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+
+    <h1>QUBE VISION IMG QUERY</h1>
+    <hr>
+    <button><a href="{% url 'qubeVisionImage' %}">Go Back</a></button>
+    <div>
+        <h3>
+            {{ vision_img_response.user_text_query }}
+        </h3>
+
+        <div>
+            <img src="{{ vision_img_response.user_img_query.url }}" alt=""
+                style="width: 640px; height: 480px; border-radius: 10px;">
+            <p>{{ vision_img_response.response }}</p>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

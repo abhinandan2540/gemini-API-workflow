@@ -1,0 +1,54 @@
+<style>
+    .qube-img-generation {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="qube-img-generation">
+    <div>
+        {% include 'base/Models_component_ai.html' %}
+    </div>
+
+    <div>
+        <h1>QUBE IMG GENERATION</h1>
+        <br>
+        <hr>
+        <br>
+        <form action="" method="GET">
+            {% csrf_token %}
+
+            <label for="">Prompt QUBE :</label>
+            <input type="text" name="image_prompt">
+            <input type="submit" value="Confrim">
+        </form>
+        <br>
+        <hr>
+        <div>
+            <h1>QUBE IMAGE</h1>
+            <div>
+                {% for item in qube_img_generation %}
+                {% if item.type == 'image' %}
+                <img src="{{ item.data }}" alt="Generated Image">
+                {% else %}
+                <p>{{ item.data }}</p>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <h1> QUBE IMG FEED</h1>
+        <hr>
+    </div>
+</div>
+
+
+{% endblock %}

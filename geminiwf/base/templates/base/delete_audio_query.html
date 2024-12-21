@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <h3>Are you want to delete this {{ obj }} ?</h3>
+        <button><a href="">Go Back</a></button>
+        <input type="submit" value="Confrim">
+    </form>
+</div>
+
+{% endblock %}
