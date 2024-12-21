@@ -643,10 +643,11 @@ def communityRoom(request, pk):
     total_community_topics = qubeCommunityTopic.objects.all()
     room_messages = room.messages.all()
     participants = room.participants.all()
+    user_visual_query = request.POST.get('user_visual_query', None)
 
     if request.method == "POST":
         message = qubeCommunityMessage.objects.create(
-            user=request.user, room=room, body=request.POST.get('body'))
+            user=request.user, room=room, body=request.POST.get('body'), user_visual_query=user_visual_query)
 
         room.participants.add(request.user)
         return redirect('communityRoom', pk=room.id)

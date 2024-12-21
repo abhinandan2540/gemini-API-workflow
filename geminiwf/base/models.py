@@ -129,6 +129,8 @@ class qubeCommunityMessage(models.Model):
     room = models.ForeignKey(
         qubeCommunityRoom, related_name='messages', on_delete=models.CASCADE)
     body = models.TextField()
+    user_visual_query = models.FileField(
+        upload_to='uploaded_files/', null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

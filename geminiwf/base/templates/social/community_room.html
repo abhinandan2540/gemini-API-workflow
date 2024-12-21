@@ -22,36 +22,71 @@
 
 
     <div>
-
         <div>
             <div>
                 <h1>{{ room.community_room_name }}</h1>
-                <h3> Topic-{{ room.topic.community_topic_name }}</h3>
-                <span> HOSTED BY- @{{ room.host.username }}</span>
+                <h3> Topic - {{ room.topic.community_topic_name }}</h3>
+                <span> HOSTED BY - @{{ room.host.username }}</span>
                 <hr>
-                <h2>Conservations</h2>
+                <h2>Conversations</h2>
                 <hr>
                 <div>
                     {% for message in room_messages %}
                     <div>
-                        <small>@{{ message.user }}</a> {{message.created|timesince }} </small>
+                        <small>@{{ message.user }} {{ message.created|timesince }}</small>
                         {% if request.user == message.user %}
-                        <p>{{ message.body }}</p>
-                        <a href="{% url 'deleteCommunityMessage' message.id %}">Delete</a>
+                        <div>
+                            <p>{{ message.body }}</p>
+                            <div>
+                                {% if message.user_visual_query %}
+                                <div>
+                                    {% if message.user_visual_query.url.endswith ".jpg" or
+                                    message.user_visual_query.url.endswith ".png" or
+                                    message.user_visual_query.url.endswith ".gif" %}
+                                    <div>
+                                        <img src="{{ message.user_visual_query.url }}"
+                                            style="width: 250px; height: 150px;" alt="uploaded images">
+                                    </div>
+                                    {% elif message.user_visual_query.url.endswith ".mp4" or
+                                    message.user_visual_query.url.endswith ".avi" %}
+                                    <div>
+                                        <video src="{{ message.user_visual_query.url }}" type="video/mp4" controls
+                                            style="width: 250px; height: 150px;"></video>
+                                    </div>
+                                    {% elif message.user_visual_query.url.endswith ".mp3" or
+                                    message.user_visual_query.url.endswith ".wav" %}
+                                    <div>
+                                        <audio src="{{ message.user_visual_query.url }}" controls></audio>
+                                    </div>
+                                    {% else %}
+                                    <div>
+                                        <a href="{{ message.user_visual_query.url }}" download>Download File</a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <a href="{% url 'deleteCommunityMessage' message.id %}">Delete</a>
+                        </div>
                         {% endif %}
                         <hr>
                     </div>
                     {% endfor %}
                 </div>
-                <div>
-                    {% if request.user.is_authenticated %}
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <input type="text" placeholder="Message..." name="body">
-                    </form>
-                    {% endif %}
-                </div>
             </div>
+
+        </div>
+
+
+        <div>
+            {% if request.user.is_authenticated %}
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <input type="file" accept=".jpg,.png,.gif,.mp3,.mp4" multiple name="user_visual_query">
+                <input type="text" placeholder="Message..." name="body">
+            </form>
+            {% endif %}
         </div>
 
     </div>
