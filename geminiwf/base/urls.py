@@ -86,7 +86,7 @@ urlpatterns = [
     path('deleteActivityMessage/<str:pk>/',
          views.deleteActivityMessage, name='deleteActivityMessages'),
 
-    path('userProfile/<str:pk>/', views.qubeCommunityUserProfile, name='userProfile'),
+    #     path('userProfile/<str:pk>/', views.qubeCommunityUserProfile, name='userProfile'),
 
 
 

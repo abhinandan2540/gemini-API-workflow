@@ -746,4 +746,4 @@ def deleteActivityMessage(request, pk):
 #     return render(request, 'social/qube_community_user_profile.html', context)
 
 
-#
+# need to render user profile and also make some functionality like messaging individual user

@@ -34,8 +34,7 @@
                 <div>
                     {% for message in room_messages %}
                     <div>
-                        <small>@{{ message.user }}</a> {{
-                            message.created|timesince }} </small>
+                        <small>@{{ message.user }}</a> {{message.created|timesince }} </small>
                         {% if request.user == message.user %}
                         <p>{{ message.body }}</p>
                         <a href="{% url 'deleteCommunityMessage' message.id %}">Delete</a>
