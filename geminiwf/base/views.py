@@ -720,6 +720,8 @@ def deleteCommunityMessage(request, pk):
     context = {'obj': delete_message}
     return render(request, 'social/delete_community_message.html', context)
 
+# for deleting qube community activity messages
+
 
 def deleteActivityMessage(request, pk):
     delete_activity_message = qubeCommunityMessage.objects.get(id=pk)
@@ -730,3 +732,16 @@ def deleteActivityMessage(request, pk):
 
     context = {'obj': delete_activity_message}
     return render(request, 'social/delete_activity_message.html', context)
+
+
+# qube community individual profile
+
+def qubeCommunityUserProfile(request, pk):
+
+    user = User.objects.get(id=pk)
+    room_messages = user.messages.all()
+    total_community_topics = qubeCommunityTopic.objects.all()
+    room = user.room_set.all()
+
+    context = {}
+    return render(context, 'social/qube_community_user_profile.html', context)
