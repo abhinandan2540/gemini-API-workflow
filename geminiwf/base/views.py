@@ -621,3 +621,10 @@ def communityHome(request):
 
     context = {'rooms': rooms}
     return render(request, 'social/community_home.html', context)
+
+
+def communityRoom(request, pk):
+    room = Room.objects.get(id=pk)
+
+    context = {'room': room}
+    return render(request, 'social/community_room.html', context)
