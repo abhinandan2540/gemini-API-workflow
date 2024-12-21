@@ -24,7 +24,14 @@
         <hr>
         {% for room in rooms %}
         <div>
-            <h3><a href="{% url 'communityRoom' room.id %}">{{ room.name }}</a></h3>
+            <ul>
+                <li>
+                    <span>@{{ room.host.username }} {{ room.created|timesince }} ago</span>
+                    <h2><a href="{% url 'communityRoom' room.id %}">{{ room.name }}</a></h2>
+                    <p>{{ room.topic.name }}</p>
+                    <hr>
+                </li>
+            </ul>
         </div>
         {% endfor %}
     </div>
