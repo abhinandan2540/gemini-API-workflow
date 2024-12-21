@@ -34,7 +34,7 @@
                 <div>
                     {% for message in room_messages %}
                     <div>
-                        <small><a href="{% url 'userProfile' message.id %}">@{{ message.user }}</a> {{
+                        <small>@{{ message.user }}</a> {{
                             message.created|timesince }} </small>
                         {% if request.user == message.user %}
                         <p>{{ message.body }}</p>

@@ -2,7 +2,7 @@
     {% for room in community_rooms %}
     <div>
         <span>{{ room.topic }}</span>
-        <span><a href="{% url 'userProfile' room.id %}">@{{ room.host.username }}</a></span>
+        <span>@{{ room.host.username }}</a></span>
         <h2><a href="{% url 'communityRoom' room.id %}">{{ room }}</a></h2>
 
         {% if request.user == room.host %}
