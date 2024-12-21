@@ -28,20 +28,7 @@
         <hr>
 
         <div>
-            {% for room in community_rooms %}
-            <div>
-                <span>{{ room.topic }}</span>
-                <span><a href="{% url 'userProfile' room.id %}">@{{ room.host.username }}</a></span>
-                <h2><a href="{% url 'communityRoom' room.id %}">{{ room }}</a></h2>
-
-                {% if request.user == room.host %}
-                <span><a href="{% url 'editCommunityRoom' room.id %}">Update Room</a></span>
-                <span><a href="{% url 'communityDeleteRoom' room.id %}">Delete Room</a></span>
-                {% endif %}
-
-                <hr>
-            </div>
-            {% endfor %}
+            {% include 'social/qube_community_feed_component.html' %}
         </div>
 
     </div>

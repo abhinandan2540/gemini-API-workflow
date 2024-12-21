@@ -743,5 +743,6 @@ def qubeCommunityUserProfile(request, pk):
     total_community_topics = qubeCommunityTopic.objects.all()
     room = user.room_set.all()
 
-    context = {}
+    context = {'room': room, 'room_messages': room_messages,
+               'total_community_topics': total_community_topics, 'user': user}
     return render(context, 'social/qube_community_user_profile.html', context)
