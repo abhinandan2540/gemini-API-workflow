@@ -1,6 +1,5 @@
-from base.models import qubeCommunityMessage
+
 from django.db.models import Q
-from base.forms import RoomForm
 from io import BytesIO
 import base64
 from django.shortcuts import render, redirect
@@ -18,7 +17,6 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import TextModelHistory, ImageModelHistory, interactiveChatHistory
 from .models import QubeVisionImgHistory, QubeVideoModelHistory, QubeAudioModelHistory
 from .models import QubeCodeModelHistory
-from .models import qubeCommunityRoom, qubeCommunityTopic
 
 
 # google gemini api key
@@ -613,138 +611,5 @@ def qubeSocialFront(request):
     context = {}
     return render(request, 'social/QUBE_SOCIAL_front.html', context)
 
-
+# starting from the scratch
 # qube community home page
-
-def qubeCommunityHomePage(request):
-
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
-
-    community_rooms = qubeCommunityRoom.objects.filter(
-        Q(topic__community_topic_name__icontains=q) |
-        Q(community_room_name__icontains=q)
-    )
-
-    total_community_topics = qubeCommunityTopic.objects.all()
-    total_community_rooms = community_rooms.count()
-
-    room_messages = qubeCommunityMessage.objects.filter(
-        Q(room__topic__community_topic_name__icontains=q))
-
-    context = {'community_rooms': community_rooms,
-               'total_community_topics': total_community_topics, 'total_community_rooms': total_community_rooms, 'room_messages': room_messages}
-    return render(request, 'social/qube_community_home.html', context)
-
-
-# community room
-
-def communityRoom(request, pk):
-    room = qubeCommunityRoom.objects.get(id=pk)
-    total_community_topics = qubeCommunityTopic.objects.all()
-    room_messages = room.messages.all()
-    participants = room.participants.all()
-    user_visual_query = request.POST.get('user_visual_query', None)
-
-    if request.method == "POST":
-        message = qubeCommunityMessage.objects.create(
-            user=request.user, room=room, body=request.POST.get('body'), user_visual_query=user_visual_query)
-
-        room.participants.add(request.user)
-        return redirect('communityRoom', pk=room.id)
-
-    context = {'room': room, 'total_community_topics': total_community_topics,
-               'room_messages': room_messages, 'participants': participants}
-    return render(request, 'social/community_room.html', context)
-
-
-# creating community room
-
-def createCommunityRoom(request):
-    room_form = RoomForm()
-
-    if request.method == "POST":
-        room_form = RoomForm(request.POST)
-        if room_form.is_valid():
-            room_form.save()
-            return redirect('qubeCommunityHome')
-
-    context = {'room_form': room_form}
-    return render(request, 'social/room_form.html', context)
-
-
-# community delete room
-
-def deleteCommunityRoom(request, pk):
-
-    room_delete = qubeCommunityRoom.objects.get(id=pk)
-
-    if request.method == "POST":
-        room_delete.delete()
-        return redirect('qubeCommunityHome')
-
-    context = {'obj': room_delete}
-    return render(request, 'social/community_deleteRoom.html', context)
-
-
-# community edit room
-
-def editCommunityRoom(request, pk):
-
-    room_update = qubeCommunityRoom.objects.get(id=pk)
-    form = RoomForm(instance=room_update)
-
-    if request.method == "POST":
-        form = RoomForm(request.POST, instance=room_update)
-        if form.is_valid():
-            form.save()
-            return redirect('qubeCommunityHome')
-
-    context = {'form': form}
-    return render(request, 'social/edit_community_room.html', context)
-
-
-# for deleting community messages
-
-def deleteCommunityMessage(request, pk):
-
-    delete_message = qubeCommunityMessage.objects.get(id=pk)
-    room = delete_message.room
-
-    if request.user != delete_message.user:
-        messages.error(
-            request, "You are not authorized to delete this message.")
-        return redirect('communityRoom', pk=room.id)
-
-    if request.method == "POST":
-        delete_message.delete()
-        return redirect('communityRoom', pk=room.id)
-
-    context = {'obj': delete_message}
-    return render(request, 'social/delete_community_message.html', context)
-
-# for deleting qube community activity messages
-
-
-def deleteActivityMessage(request, pk):
-    delete_activity_message = qubeCommunityMessage.objects.get(id=pk)
-
-    if request.method == "POST":
-        delete_activity_message.delete()
-        return redirect('qubeCommunityHome')
-
-    context = {'obj': delete_activity_message}
-    return render(request, 'social/delete_activity_message.html', context)
-
-
-# qube community individual profile
-# need to upgrade in user-profile
-
-# def qubeCommunityUserProfile(request, pk):
-
-#     user = User.objects.get(id=pk)
-
-#     context = {'user': user}
-#     return render(request, 'social/qube_community_user_profile.html', context)
-
-
-# need to render user profile and also make some functionality like messaging individual user

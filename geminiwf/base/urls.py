@@ -66,27 +66,7 @@ urlpatterns = [
 
     # starting of QUBE social
     path('qubeSOCIAL/', views.qubeSocialFront, name='qubeSocial'),
-    path('qubeCommunityHome/', views.qubeCommunityHomePage,
-         name='qubeCommunityHome'),
 
-    path('communityRoom/<str:pk>/', views.communityRoom, name='communityRoom'),
-
-    path('createCommunityRoom/', views.createCommunityRoom,
-         name='createCommunityRoom'),
-
-    path('communityDeleteRoom/<str:pk>/',
-         views.deleteCommunityRoom, name='communityDeleteRoom'),
-
-    path('editCommunityRoom/<str:pk>/',
-         views.editCommunityRoom, name='editCommunityRoom'),
-
-    path('deleteCommunityMessage/<str:pk>/',
-         views.deleteCommunityMessage, name='deleteCommunityMessage'),
-
-    path('deleteActivityMessage/<str:pk>/',
-         views.deleteActivityMessage, name='deleteActivityMessages'),
-
-    #     path('userProfile/<str:pk>/', views.qubeCommunityUserProfile, name='userProfile'),
 
 
 
