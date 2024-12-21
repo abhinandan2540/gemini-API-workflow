@@ -1,4 +1,5 @@
 
+from base.models import Room
 from django.db.models import Q
 from io import BytesIO
 import base64
@@ -616,5 +617,7 @@ def qubeSocialFront(request):
 
 
 def communityHome(request):
-    context = {}
+    rooms = Room.objects.all()
+
+    context = {'rooms': rooms}
     return render(request, 'social/community_home.html', context)

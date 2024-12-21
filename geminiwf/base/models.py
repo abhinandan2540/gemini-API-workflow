@@ -98,3 +98,16 @@ class QubeCodeModelHistory(models.Model):
 
 
 # QUBE COMMUNITY TOPIC MODEL
+
+class Room(models.Model):
+    # host
+    # topic
+    name = models.CharField(max_length=250)
+    description = models.TextField(null=True, blank=True)
+    # participants
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+# returns the string represented value of room name, (name represent the room name )
+    def __str__(self):
+        return self.name
