@@ -27,16 +27,16 @@
         <hr>
         <h1>{{ room }}</h1>
         <hr>
-
-
         <div>
-
             <h2>Conversations</h2>
             <hr>
             <div>
                 {% for message in room_messages %}
                 <div>
-                    <small>@{{ message.user }} {{ message.created|timesince }}</small>
+                    {% if request.user == message.user %}
+                    <p><a href="{% url 'deleteCommunityMessage' message.id %}">Delete</a></p>
+                    {% endif %}
+                    <p>@{{ message.user }} {{ message.created|timesince }}</p>
                     {% if message.user_visual_query %}
                     <div>
                         <img src="{{ message.user_visual_query.url }}" alt="uploaded_images">
@@ -69,6 +69,11 @@
     <div>
         <h2>PARTICIPANTS</h2>
         <hr>
+        {% for user in participants %}
+        <div>
+            <p>@{{ user.username }}</p>
+        </div>
+        {% endfor %}
     </div>
 
 

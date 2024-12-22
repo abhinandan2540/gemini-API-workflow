@@ -644,6 +644,8 @@ def communityRoom(request, pk):
     text_message = request.POST.get('text_message')
     user_visual_query = request.FILES.get('visual_message', None)
 
+    participants = room.participants.all()
+
     if request.method == "POST":
 
         message = Message.objects.create(
@@ -652,9 +654,12 @@ def communityRoom(request, pk):
             body=text_message,
             user_visual_query=user_visual_query
         )
+        room.participants.add(request.user)
         return redirect('communityRoom', pk=room.id)
 
-    context = {'room': room, 'room_messages': room_messages}
+    context = {'room': room, 'room_messages': room_messages,
+               'participants': participants}
+
     return render(request, 'social/community_room.html', context)
 # so in the model, topic has multiple room, room has multiple topic, so we are taking all the messages inside the room, and our Class Message we describe as message, for all we did message_set().all()
 
@@ -722,9 +727,31 @@ def deleteCommunityRoom(request, pk):
 
     room = Room.objects.get(id=pk)
 
+    if request.user != room.host:
+        return HttpResponse('you are not allowed here')
+
     if request.method == "POST":
         room.delete()
         return redirect('communityHome')
 
     context = {'obj': room}
+    return render(request, 'social/delete_community_room.html', context)
+
+
+# community room delete message
+
+@login_required(login_url='loginUser')
+def communityRoomDeleteMessage(request, pk):
+
+    message = Message.objects.get(id=pk)
+    room_id = message.room.id
+
+    if request.user != message.user:
+        return HttpResponse('you are not allowed here')
+
+    if request.method == "POST":
+        message.delete()
+        return redirect('communityRoom', pk=room_id)
+
+    context = {'obj': message}
     return render(request, 'social/delete_community_room.html', context)
