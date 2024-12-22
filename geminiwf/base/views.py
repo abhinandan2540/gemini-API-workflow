@@ -668,3 +668,15 @@ def updateCommunityRoom(request, pk):
 
 # the meaning of instance room is that, the room of the particular value is gonna be prefilled into the form vlaue
 # if we don't give instance into the from=roomform then by default it gonna create a new room, so specifying instance is mandetory
+
+
+def deleteCommunityRoom(request, pk):
+
+    room = Room.objects.get(id=pk)
+
+    if request.method == "POST":
+        room.delete()
+        return redirect('communityHome')
+
+    context = {'obj': room}
+    return render(request, 'social/delete_community_room.html', context)
