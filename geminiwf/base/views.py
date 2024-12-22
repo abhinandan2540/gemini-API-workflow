@@ -638,7 +638,7 @@ def communityHome(request):
 
 def communityRoom(request, pk):
     room = Room.objects.get(id=pk)
-
+    topics = Topic.objects.all()
     room_messages = room.message_set.all()
 
     user_text_query = request.POST.get('user_text_query')
@@ -656,7 +656,7 @@ def communityRoom(request, pk):
         return redirect('communityRoom', pk=room.id)
 
     context = {'room': room, 'room_messages': room_messages,
-               'participants': participants}
+               'participants': participants, 'topics': topics}
 
     return render(request, 'social/community_room.html', context)
 

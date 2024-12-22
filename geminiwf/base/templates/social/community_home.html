@@ -22,14 +22,11 @@
             </form>
         </div>
         <hr>
-        <h2>BROWSE TOPICS</h2>
-        <hr>
-        <h3><a href="{% url 'communityHome' %}">All</a></h3>
-        {% for topic in topics %}
+
         <div>
-            <h3><a href="{% url 'communityHome' %}?q={{ topic.name }}">{{ topic.name }}</a></h3>
+            {% include 'social/community_topic_component.html' %}
         </div>
-        {% endfor %}
+
     </div>
 
     <div>

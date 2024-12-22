@@ -17,8 +17,7 @@
     </div>
 
     <div>
-        <h2>BROWSE TOPICS</h2>
-        <hr>
+        {% include 'social/community_topic_component.html' %}
     </div>
 
 
@@ -39,6 +38,37 @@
                     {% endif %}
                     <p>@{{ message.user }} {{ message.created|timesince }}</p>
                     <p>{{ message.body }}</p>
+                    {% if message.user_visual_query %}
+                    <div>
+                        {% with filename=message.user_visual_query.name %}
+                        {% if ".jpg" in filename|lower or ".jpeg" in filename|lower or ".png" in filename|lower %}
+                        <div>
+                            <img src="{{ message.user_visual_query.url }}" alt="Uploaded Image"
+                                style="width: 400px; height: 250px; border-radius: 10px;">
+                        </div>
+                        {% elif ".mp4" in filename|lower or ".webm" in filename|lower %}
+                        <div>
+                            <video controls style="width: 400px; height: 250px;">
+                                <source src="{{ message.user_visual_query.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        {% elif ".mp3" in filename|lower or ".wav" in filename|lower %}
+                        <div>
+                            <audio controls>
+                                <source src="{{ message.user_visual_query.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        {% else %}
+                        <div>
+                            <a href="{{ message.user_visual_query.url }}" download>Download
+                                File</a>
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    {% endif %}
                     <hr>
                 </div>
                 {% endfor %}
