@@ -21,16 +21,57 @@
         <hr>
     </div>
 
+
     <div>
         <h1>COMMUNITY ROOM</h1>
         <hr>
-        <h2>{{ room }}</h2>
+        <h1>{{ room }}</h1>
+        <hr>
+
+
+        <div>
+
+            <h2>Conversations</h2>
+            <hr>
+            <div>
+                {% for message in room_messages %}
+                <div>
+                    <small>@{{ message.user }} {{ message.created|timesince }}</small>
+                    {% if message.user_visual_query %}
+                    <div>
+                        <img src="{{ message.user_visual_query.url }}" alt="uploaded_images">
+                    </div>
+                    {% endif %}
+                    <p>{{ message.body }}</p>
+                    <hr>
+                </div>
+                {% endfor %}
+            </div>
+
+
+            {% if request.user.is_authenticated %}
+            <div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    <input type="text" placeholder="Message Community..." name="text_message">
+                    <input type="file" accept="image/*" multiple name="visual_message">
+                </form>
+            </div>
+            {% endif %}
+        </div>
+
     </div>
+
+
+
 
     <div>
         <h2>PARTICIPANTS</h2>
         <hr>
     </div>
+
+
 
 </div>
 

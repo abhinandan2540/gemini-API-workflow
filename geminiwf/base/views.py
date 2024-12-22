@@ -1,4 +1,6 @@
 
+from django.core.files.storage import FileSystemStorage
+from base.models import Message
 from django.http import HttpResponse
 from base.models import Topic
 from .forms import RoomForm
@@ -637,11 +639,45 @@ def communityHome(request):
 def communityRoom(request, pk):
     room = Room.objects.get(id=pk)
 
-    context = {'room': room}
+    room_messages = room.message_set.all()
+
+    text_message = request.POST.get('text_message')
+    user_visual_query = request.FILES.get('visual_message', None)
+
+    if request.method == "POST":
+
+        message = Message.objects.create(
+            user=request.user,
+            room=room,
+            body=text_message,
+            user_visual_query=user_visual_query
+        )
+        return redirect('communityRoom', pk=room.id)
+
+    context = {'room': room, 'room_messages': room_messages}
     return render(request, 'social/community_room.html', context)
+# so in the model, topic has multiple room, room has multiple topic, so we are taking all the messages inside the room, and our Class Message we describe as message, for all we did message_set().all()
+
+
+'''def communityRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    room_messages = room.message_set.all()
+
+    text_message = request.POST.get('text_message')
+
+    if request.method == "POST":
+        message = Message.objects.create(
+            user=request.user,
+            room=room,
+            body=text_message
+        )
+        return redirect('communityRoom', pk=room.id)
+    context = {'room': room, 'room_messages': room_messages}
+    return render(request, 'social/community_room.html', context)'''
 
 
 # for community creating room
+
 
 @login_required(login_url='loginUser')
 def communityCreateRoom(request):
