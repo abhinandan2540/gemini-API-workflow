@@ -641,15 +641,15 @@ def communityRoom(request, pk):
 
     room_messages = room.message_set.all()
 
-    text_message = request.POST.get('text_message')
-    user_visual_query = request.FILES.get('visual_message', None)
+    user_text_query = request.POST.get('user_text_query')
+    user_visual_query = request.FILES.get('user_visual_query', None)
     participants = room.participants.all()
 
     if request.method == "POST":
         message = Message.objects.create(
             user=request.user,
             room=room,
-            body=text_message,
+            body=user_text_query,
             user_visual_query=user_visual_query
         )
         room.participants.add(request.user)
@@ -659,6 +659,8 @@ def communityRoom(request, pk):
                'participants': participants}
 
     return render(request, 'social/community_room.html', context)
+
+
 # so in the model, topic has multiple room, room has multiple topic, so we are taking all the messages inside the room, and our Class Message we describe as message, for all we did message_set().all()
 
 

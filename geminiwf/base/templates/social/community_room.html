@@ -37,15 +37,7 @@
                     {% if request.user == message.user %}
                     <p><a href="{% url 'deleteCommunityMessage' message.id %}">Delete</a></p>
                     {% endif %}
-
                     <p>@{{ message.user }} {{ message.created|timesince }}</p>
-
-                    {% if message.user_visual_query %}
-                    <div>
-                        <img src="{{ message.user_visual_query.url }}" alt="uploaded_images">
-                    </div>
-                    {% endif %}
-
                     <p>{{ message.body }}</p>
                     <hr>
                 </div>
@@ -55,11 +47,12 @@
 
             {% if request.user.is_authenticated %}
             <div>
-                <form action="" method="POST">
+                <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
 
-                    <input type="text" placeholder="Message Community..." name="text_message">
-                    <input type="file" accept="image/*" multiple name="visual_message">
+                    <input type="text" placeholder="Message Community..." name="user_text_query">
+                    <input type="file" name="user_visual_query" accept="image/*,video/*,audio/*" multiple>
+                    <input type="submit" value="Confrim">
                 </form>
             </div>
             {% endif %}
