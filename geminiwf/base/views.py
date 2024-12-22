@@ -613,14 +613,18 @@ def qubeSocialFront(request):
     return render(request, 'social/QUBE_SOCIAL_front.html', context)
 
 # starting from the scratch
-# qube community home page
 
+
+# qube community home page
 
 def communityHome(request):
     rooms = Room.objects.all()
 
     context = {'rooms': rooms}
     return render(request, 'social/community_home.html', context)
+
+
+# community room page
 
 
 def communityRoom(request, pk):
