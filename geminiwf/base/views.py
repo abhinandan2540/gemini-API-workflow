@@ -1,4 +1,5 @@
 
+from .forms import RoomForm
 from base.models import Room
 from django.db.models import Q
 from io import BytesIO
@@ -636,6 +637,15 @@ def communityRoom(request, pk):
 
 # for community creating room
 
+
 def communityCreateRoom(request):
-    context = {}
+    form = RoomForm()
+
+    if request.method == "POST":
+        form = RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('communityHome')
+
+    context = {'form': form}
     return render(request, 'social/room_form.html', context)

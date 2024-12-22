@@ -7,6 +7,8 @@
         <form action="" method="POST">
             {% csrf_token %}
 
+            {{ form.as_p }}
+
             <input type="submit" value="Confrim">
             <button><a href="{% url 'communityHome' %}">Discard</a></button>
         </form>
@@ -17,3 +19,5 @@
 
 
 {% endblock %}
+
+<!-- form.as_p   means taking all the parameters of the forms that are available into it -->
