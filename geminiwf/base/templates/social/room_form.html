@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            <input type="submit" value="Confrim">
+            <button><a href="{% url 'communityHome' %}">Discard</a></button>
+        </form>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

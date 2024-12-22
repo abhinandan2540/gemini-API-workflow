@@ -632,3 +632,10 @@ def communityRoom(request, pk):
 
     context = {'room': room}
     return render(request, 'social/community_room.html', context)
+
+
+# for community creating room
+
+def communityCreateRoom(request):
+    context = {}
+    return render(request, 'social/room_form.html', context)
