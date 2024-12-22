@@ -27,6 +27,7 @@
         <div>
             <ul>
                 <li>
+                    <a href="{% url 'updateCommunityRoom' room.id %}">Edit community Room</a>
                     <span>@{{ room.host.username }} {{ room.created|timesince }} ago</span>
                     <h2><a href="{% url 'communityRoom' room.id %}">{{ room.name }}</a></h2>
                     <p>{{ room.topic.name }}</p>

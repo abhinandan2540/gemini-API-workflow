@@ -649,3 +649,22 @@ def communityCreateRoom(request):
 
     context = {'form': form}
     return render(request, 'social/room_form.html', context)
+
+
+# for updating the community Room
+
+def updateCommunityRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    form = RoomForm(instance=room)
+
+    if request.method == "POST":
+        form = RoomForm(request.POST, instance=room)
+        if form.is_valid():
+            form.save()
+            return redirect('communityHome')
+
+    context = {'form': form}
+    return render(request, 'social/room_form.html', context)
+
+# the meaning of instance room is that, the room of the particular value is gonna be prefilled into the form vlaue
+# if we don't give instance into the from=roomform then by default it gonna create a new room, so specifying instance is mandetory

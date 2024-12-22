@@ -74,6 +74,10 @@ urlpatterns = [
     path('communityCreateRoom/', views.communityCreateRoom,
          name='communityCreateRoom'),
 
+    path('update-community-room/<str:pk>/',
+         views.updateCommunityRoom, name='updateCommunityRoom'),
+
+
 
 
 
