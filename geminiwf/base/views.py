@@ -643,11 +643,9 @@ def communityRoom(request, pk):
 
     text_message = request.POST.get('text_message')
     user_visual_query = request.FILES.get('visual_message', None)
-
     participants = room.participants.all()
 
     if request.method == "POST":
-
         message = Message.objects.create(
             user=request.user,
             room=room,
