@@ -15,12 +15,26 @@
     </div>
 
     <div>
+        <!-- this is for the search functionality for the rooms -->
+        <div>
+            <form action="{% url 'communityHome' %}" method="GET">
+                <input type="text " name="q" placeholder="Search....">
+            </form>
+        </div>
+        <hr>
         <h2>BROWSE TOPICS</h2>
         <hr>
+        <h3><a href="{% url 'communityHome' %}">All</a></h3>
+        {% for topic in topics %}
+        <div>
+            <h3><a href="{% url 'communityHome' %}?q={{ topic.name }}">{{ topic.name }}</a></h3>
+        </div>
+        {% endfor %}
     </div>
 
     <div>
         <h1>QUBE COMMUNITY</h1>
+        <p>{{ room_count }} rooms available</p>
         <a href="{% url 'communityCreateRoom' %}">Create Community Room</a>
         <hr>
         {% for room in rooms %}

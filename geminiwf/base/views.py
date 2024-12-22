@@ -1,4 +1,5 @@
 
+from base.models import Topic
 from .forms import RoomForm
 from base.models import Room
 from django.db.models import Q
@@ -602,8 +603,6 @@ def qubeAIfront(request):
 
 
 #################################################################################################################
-#################################################################################################################
-#################################################################################################################
 
 # QUBE SOCIAL CODE GENERATION
 
@@ -613,15 +612,21 @@ def qubeSocialFront(request):
     context = {}
     return render(request, 'social/QUBE_SOCIAL_front.html', context)
 
-# starting from the scratch
 
+# starting from the scratch
 
 # qube community home page
 
 def communityHome(request):
-    rooms = Room.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
 
-    context = {'rooms': rooms}
+    rooms = Room.objects.filter(Q(topic__name__icontains=q) | (
+        Q(name__icontains=q)) | (Q(description__icontains=q)))
+
+    topics = Topic.objects.all()
+    room_count = rooms.count()
+
+    context = {'rooms': rooms, 'topics': topics, 'room_count': room_count}
     return render(request, 'social/community_home.html', context)
 
 
