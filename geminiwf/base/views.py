@@ -1,4 +1,5 @@
 
+from django.http import HttpResponse
 from base.models import Topic
 from .forms import RoomForm
 from base.models import Room
@@ -657,10 +658,15 @@ def communityCreateRoom(request):
 
 
 # for updating the community Room
+
+
 @login_required(login_url='loginUser')
 def updateCommunityRoom(request, pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
+
+    if request.user != room.host:
+        return HttpResponse('you are not allowed here')
 
     if request.method == "POST":
         form = RoomForm(request.POST, instance=room)
