@@ -267,7 +267,7 @@ def interactiveChat(request):
 
 
 # for deleting chat interac history
-
+@login_required(login_url='loginUser')
 def deleteInteracChat(request, pk):
     chat_query = interactiveChatHistory.objects.get(id=pk)
 
@@ -280,7 +280,7 @@ def deleteInteracChat(request, pk):
 
 
 # chat full response view
-
+@login_required(login_url='loginUser')
 def chatFullResponseView(request, pk):
     chat_query = interactiveChatHistory.objects.get(id=pk)
 
@@ -290,7 +290,7 @@ def chatFullResponseView(request, pk):
 
 # Base 64 encoding images
 # qube vision image
-
+@login_required(login_url='loginUser')
 def qubeVisionImage(request):
     vision_img_text_response = []
     textQuery = request.POST.get('textQuery', '')
@@ -326,7 +326,7 @@ def qubeVisionImage(request):
 
 
 # deleting qube vision image history
-
+@login_required(login_url='loginUser')
 def deleteQubeVisionImageHistory(request, pk):
     vision_img_obj = QubeVisionImgHistory.objects.get(id=pk)
 
@@ -339,7 +339,7 @@ def deleteQubeVisionImageHistory(request, pk):
 
 
 # full response view of qube vision image query
-
+@login_required(login_url='loginUser')
 def fullResponseQubeVisionImg(request, pk):
     vision_img_response = QubeVisionImgHistory.objects.get(id=pk)
 
@@ -349,7 +349,7 @@ def fullResponseQubeVisionImg(request, pk):
 
 # for vision video query
 # need some debugging into it
-
+@login_required(login_url='loginUser')
 def qubeVideoQuery(request):
     vision_img_video_response = []
     text_query = request.POST.get('text_query', '')
@@ -394,7 +394,7 @@ def qubeVideoQuery(request):
 
 
 # for deleting the qube video query
-
+@login_required(login_url='loginUser')
 def deleteQubeVideo(request, pk):
     delete_qube_video = QubeVideoModelHistory.objects.get(id=pk)
 
@@ -407,7 +407,7 @@ def deleteQubeVideo(request, pk):
 
 
 # for qube vision full response view
-
+@login_required(login_url='loginUser')
 def qubeVideoFullResponse(request, pk):
     qube_video_full = QubeVideoModelHistory.objects.get(id=pk)
 
@@ -416,7 +416,7 @@ def qubeVideoFullResponse(request, pk):
 
 
 # dealing with wube audio query
-
+@login_required(login_url='loginUser')
 def qubeAudioQuery(request):
 
     qube_audio_query = []
@@ -460,7 +460,7 @@ def qubeAudioQuery(request):
 
 
 # delete qube audio queries
-
+@login_required(login_url='loginUser')
 def deleteAudioQuery(request, pk):
     del_audio_query = QubeAudioModelHistory.objects.get(id=pk)
 
@@ -473,7 +473,7 @@ def deleteAudioQuery(request, pk):
 
 
 # for full response view of qube audi
-
+@login_required(login_url='loginUser')
 def qubeAudioFullResponse(request, pk):
 
     qube_audio = QubeAudioModelHistory.objects.get(id=pk)
@@ -483,7 +483,7 @@ def qubeAudioFullResponse(request, pk):
 
 
 # for QUBE code execution
-
+@login_required(login_url='loginUser')
 def qubeCodeModel(request):
     qube_code_query = []
     code_text_query = request.GET.get('text_query', '')
@@ -522,7 +522,7 @@ def qubeCodeModel(request):
 
 
 # for deleting qube code
-
+@login_required(login_url='loginUser')
 def deleteQubeCode(request, pk):
     delete_code = QubeCodeModelHistory.objects.get(id=pk)
 
@@ -535,7 +535,7 @@ def deleteQubeCode(request, pk):
 
 
 # qube CODE full response
-
+@login_required(login_url='loginUser')
 def qubeCodeFullRes(request, pk):
 
     qube_code_full = QubeCodeModelHistory.objects.get(id=pk)
@@ -570,7 +570,7 @@ def qubeCodeFullRes(request, pk):
 
 
 # upgradation needed into the qube Image generation model
-
+@login_required(login_url='loginUser')
 def qubeImageGenerate(request):
     qube_img_generation = []
     user_img_prompt = request.GET.get('image_prompt')
@@ -642,7 +642,7 @@ def communityRoom(request, pk):
 
 # for community creating room
 
-
+@login_required(login_url='loginUser')
 def communityCreateRoom(request):
     form = RoomForm()
 
@@ -657,7 +657,7 @@ def communityCreateRoom(request):
 
 
 # for updating the community Room
-
+@login_required(login_url='loginUser')
 def updateCommunityRoom(request, pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
@@ -675,6 +675,7 @@ def updateCommunityRoom(request, pk):
 # if we don't give instance into the from=roomform then by default it gonna create a new room, so specifying instance is mandetory
 
 
+@login_required(login_url='loginUser')
 def deleteCommunityRoom(request, pk):
 
     room = Room.objects.get(id=pk)
