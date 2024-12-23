@@ -629,7 +629,9 @@ def communityHome(request):
     topics = Topic.objects.all()
     room_count = rooms.count()
     # for rendering out the activity feed
-    room_messages = Message.objects.all()
+    # room__topic__name__icontains menas inside the message in a forignkeu i have room, inside room i have topic, inside topic i have name
+
+    room_messages = Message.objects.filter(Q(room__topic__name__icontains=q))
 
     context = {'rooms': rooms, 'topics': topics,
                'room_count': room_count, 'room_messages': room_messages}

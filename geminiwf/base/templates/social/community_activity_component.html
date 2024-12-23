@@ -1,7 +1,10 @@
 <div>
+    <h2>ACTIVITY FEED</h2>
+    <hr>
     {% for message in room_messages %}
     <div>
         <small>{{ message.user }} {{ message.created|timesince }} ago</small>
+        <small>replied to <i>"{{ message.room }}"</i></small>
         <p>{{ message.body }}</p>
         {% if message.user_visual_query %}
         <div>

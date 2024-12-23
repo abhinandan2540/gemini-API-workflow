@@ -34,34 +34,22 @@
         <p>{{ room_count }} rooms available</p>
         <a href="{% url 'communityCreateRoom' %}">Create Community Room</a>
         <hr>
-        {% for room in rooms %}
         <div>
-            <ul>
-                <li>
-                    {% if request.user == room.host %}
-                    <a href="{% url 'updateCommunityRoom' room.id %}">Edit community Room</a>
-                    <a href="{% url 'deleteCommunityRoom' room.id %}">| Delete</a>
-                    {% endif %}
-                    <p>@{{ room.host.username }} {{ room.created|timesince }} ago</p>
-                    <h2><a href="{% url 'communityRoom' room.id %}">{{ room.name }}</a></h2>
-                    <p>{{ room.topic.name }}</p>
-                    <hr>
-                </li>
-            </ul>
+            {% for room in rooms %}
+            <div>
+                {% include 'social/community_feed_component.html' %}
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 
     <div>
-        <h2>ACTIVITY FEED</h2>
-        <hr>
         <div>
             {% include 'social/community_activity_component.html' %}
         </div>
     </div>
 
 </div>
-
 
 
 {% endblock %}
