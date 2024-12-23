@@ -628,8 +628,11 @@ def communityHome(request):
 
     topics = Topic.objects.all()
     room_count = rooms.count()
+    # for rendering out the activity feed
+    room_messages = Message.objects.all()
 
-    context = {'rooms': rooms, 'topics': topics, 'room_count': room_count}
+    context = {'rooms': rooms, 'topics': topics,
+               'room_count': room_count, 'room_messages': room_messages}
     return render(request, 'social/community_home.html', context)
 
 
@@ -755,3 +758,6 @@ def communityRoomDeleteMessage(request, pk):
 
     context = {'obj': message}
     return render(request, 'social/delete_community_room.html', context)
+
+
+# community user profile

@@ -1,0 +1,39 @@
+<div>
+    {% for message in room_messages %}
+    <div>
+        <small>{{ message.user }} {{ message.created|timesince }} ago</small>
+        <p>{{ message.body }}</p>
+        {% if message.user_visual_query %}
+        <div>
+            {% with filename=message.user_visual_query.name %}
+            {% if ".jpg" in filename|lower or ".jpeg" in filename|lower or ".png" in filename|lower %}
+            <div>
+                <img src="{{ message.user_visual_query.url }}" alt="uploaded_images"
+                    style="width: 230px; height: 140px; border-radius: 5px;">
+            </div>
+            {% elif ".mp4" in filename|lower or ".webm" in filename|lower %}
+            <div>
+                <video controls style="width: 230px; height: 140px; border-radius: 5px;">
+                    <source src="{{ message.user_visual_query.url }}" type="video/mp4">
+                </video>
+            </div>
+            {% elif ".mp3" in filename|lower or ".wav" in filename|lower %}
+            <div>
+                <audio controls>
+                    <source src="{{ message.user_visual_query.url }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            {% else %}
+            <div>
+                <a href="{{ message.user_visual_query.url }}" download>Download
+                    File</a>
+            </div>
+            {% endif %}
+            {% endwith %}
+        </div>
+        {% endif %}
+        <hr>
+    </div>
+    {% endfor %}
+</div>
