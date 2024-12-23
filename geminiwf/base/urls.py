@@ -83,12 +83,8 @@ urlpatterns = [
     path('delete-room-message/<str:pk>/',
          views.communityRoomDeleteMessage, name='deleteCommunityMessage'),
 
-
-
-
-
-
-
+    path('communityUserProfile/<str:pk>/',
+         views.communityUserProfile, name='communityUserProfile'),
 
 
 

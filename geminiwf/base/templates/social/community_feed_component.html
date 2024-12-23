@@ -1,14 +1,16 @@
 <div>
+    {% for room in rooms %}
     <ul>
         <li>
             {% if request.user == room.host %}
             <a href="{% url 'updateCommunityRoom' room.id %}">Edit community Room</a>
             <a href="{% url 'deleteCommunityRoom' room.id %}">| Delete</a>
             {% endif %}
-            <p>@{{ room.host.username }} {{ room.created|timesince }} ago</p>
+            <p><a href="{% url 'communityUserProfile' room.host.id  %}">@{{ room.host.username }}</a></p>
             <h2><a href="{% url 'communityRoom' room.id %}">{{ room.name }}</a></h2>
             <p>{{ room.topic.name }}</p>
             <hr>
         </li>
     </ul>
+    {% endfor %}
 </div>

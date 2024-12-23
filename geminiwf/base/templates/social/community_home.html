@@ -35,11 +35,9 @@
         <a href="{% url 'communityCreateRoom' %}">Create Community Room</a>
         <hr>
         <div>
-            {% for room in rooms %}
             <div>
                 {% include 'social/community_feed_component.html' %}
             </div>
-            {% endfor %}
         </div>
     </div>
 

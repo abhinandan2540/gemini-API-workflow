@@ -3,8 +3,9 @@
     <hr>
     {% for message in room_messages %}
     <div>
-        <small>{{ message.user }} {{ message.created|timesince }} ago</small>
-        <small>replied to <i>"{{ message.room }}"</i></small>
+        <small><a href="{% url 'communityUserProfile' message.user.id %}">@{{ message.user }}</a>
+            {{ message.created|timesince }} ago</small>
+        <small>replied to <i><strong>"{{ message.room }}"</strong></i></small>
         <p>{{ message.body }}</p>
         {% if message.user_visual_query %}
         <div>

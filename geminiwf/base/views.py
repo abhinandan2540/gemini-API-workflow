@@ -763,3 +763,13 @@ def communityRoomDeleteMessage(request, pk):
 
 
 # community user profile
+
+def communityUserProfile(request, pk):
+    user = User.objects.get(id=pk)
+    topics = Topic.objects.all()
+    rooms = user.room_set.all()
+    room_messages = user.message_set.all()
+
+    context = {'user': user, 'topics': topics,
+               'rooms': rooms, 'room_messages': room_messages}
+    return render(request, 'social/community_user_profile.html', context)

@@ -1,0 +1,36 @@
+<style>
+    .profile-component {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+
+    <div style="display: flex; justify-self: center;">
+        <h2>{{ user.username }}</h2>
+    </div>
+
+    <div class="profile-component">
+        <div>
+            {% include 'social/community_topic_component.html' %}
+        </div>
+
+        <div>
+            <div>
+                {% include 'social/community_feed_component.html' %}
+            </div>
+        </div>
+        <div>
+            {% include 'social/community_activity_component.html' %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
