@@ -86,9 +86,7 @@ urlpatterns = [
     path('communityUserProfile/<str:pk>/',
          views.communityUserProfile, name='communityUserProfile'),
 
-
-
-
+    path('ChatUser/<str:pk>/', views.chatUser, name='chatUser'),
 
 
 

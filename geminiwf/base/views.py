@@ -773,3 +773,13 @@ def communityUserProfile(request, pk):
     context = {'user': user, 'topics': topics,
                'rooms': rooms, 'room_messages': room_messages}
     return render(request, 'social/community_user_profile.html', context)
+
+
+# chatting to the user
+
+def chatUser(request, pk):
+    user = User.objects.get(id=pk)
+    topics = Topic.objects.all()
+
+    context = {'topics': topics, 'user': user}
+    return render(request, 'social/community_chat_user.html', context)

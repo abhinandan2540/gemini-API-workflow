@@ -12,8 +12,8 @@
 
 <div>
 
-    <div style="display: flex; justify-self: center;">
-        <h2>{{ user.username }}</h2>
+    <div style="display: flex; flex-direction: column; justify-self: center;">
+        <h2>{{ user.username }} | <a href="{% url 'chatUser' pk=user.id %}">chat</a></h2>
     </div>
 
     <div class="profile-component">

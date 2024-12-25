@@ -1,0 +1,56 @@
+<style>
+    .chat-room {
+        display: grid;
+        grid-template-columns: 1fr 1fr 3fr;
+    }
+</style>
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div class="chat-room">
+
+    <div>
+        {% include 'social/Models_component_social.html' %}
+    </div>
+
+    <div>
+        {% include 'social/community_topic_component.html' %}
+    </div>
+    <div>
+        <div>
+            {% if request.user.is_authenticated %}
+            <h1>Chat Room</h1>
+            <h2> From : {{ request.user.username }} | To : {{ user.username }}</h2>
+            {% else %}
+            <p id="chat-service prompt">sign in to start chat service</p>
+            {% endif %}
+        </div>
+
+        <div>
+
+        </div>
+
+        <div>
+            {% if request.user.is_authenticated %}
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <input type="text" placeholder="...." name="user-text-chat">
+                <input type="file" accept="image/*,video/*,audio/*" name="user-visual-chat" multiple>
+                <input type="submit" value="Confrim">
+            </form>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}
