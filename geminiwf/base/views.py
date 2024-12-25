@@ -1,5 +1,4 @@
 
-from base.models import ChatUserModel
 from django.core.files.storage import FileSystemStorage
 from base.models import Message
 from django.http import HttpResponse
