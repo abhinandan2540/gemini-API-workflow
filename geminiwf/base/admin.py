@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import TextModelHistory, ImageModelHistory, interactiveChatHistory, QubeVisionImgHistory, QubeVideoModelHistory
 from .models import QubeAudioModelHistory, QubeCodeModelHistory
 from base.models import Room, Topic, Message
+from base.models import qubePredictionModel
 
 
 admin.site.register(TextModelHistory),
@@ -11,6 +12,7 @@ admin.site.register(QubeVisionImgHistory)
 admin.site.register(QubeVideoModelHistory)
 admin.site.register(QubeAudioModelHistory)
 admin.site.register(QubeCodeModelHistory)
+admin.site.register(qubePredictionModel)
 admin.site.register(Room)
 admin.site.register(Topic)
 admin.site.register(Message)

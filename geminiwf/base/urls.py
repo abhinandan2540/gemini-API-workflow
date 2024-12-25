@@ -64,6 +64,8 @@ urlpatterns = [
     path('qubeImgGenerate/', views.qubeImageGenerate, name='qubeImgGenerate'),
     path('qubeAI/', views.qubeAIfront, name='qubeAI'),
 
+    path('qubePredict/', views.qubePredict, name='qubePredict'),
+
     # starting of QUBE social
     path('qubeSOCIAL/', views.qubeSocialFront, name='qubeSocial'),
 

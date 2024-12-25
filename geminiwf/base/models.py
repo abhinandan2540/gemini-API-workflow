@@ -144,4 +144,20 @@ class Message(models.Model):
         return self.body[0:50]
 
 
-# for chatting with respective user
+# qube prediction mode
+
+class qubePredictionModel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_text_prompt = models.TextField(max_length=250)
+    user_prediction_model1 = models.TextField(null=False, blank=False)
+    user_prediction_model2 = models.TextField(null=False, blank=False)
+    user_input_file = models.FileField(
+        upload_to='uploaded_file/', null=False, blank=False)
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-updated', '-created']
+
+    def __str__(self):
+        return self.user_text_prompt

@@ -811,3 +811,9 @@ def deleteUserChat(request, pk):
     return render(request, 'social/delete_user_chat.html', context)
 
     """
+
+
+# QUBE PREDICTION
+def qubePredict(request):
+    context = {}
+    return render(request, 'base/qube_predict_model.html', context)
