@@ -781,5 +781,8 @@ def chatUser(request, pk):
     user = User.objects.get(id=pk)
     topics = Topic.objects.all()
 
+    user_text_chat = request.POST.get('user_text_chat')
+    user_visual_chat = request.POST.get('user_visual_chat')
+
     context = {'topics': topics, 'user': user}
     return render(request, 'social/community_chat_user.html', context)

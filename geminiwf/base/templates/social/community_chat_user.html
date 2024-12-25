@@ -38,8 +38,8 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
-                <input type="text" placeholder="...." name="user-text-chat">
-                <input type="file" accept="image/*,video/*,audio/*" name="user-visual-chat" multiple>
+                <input type="text" placeholder="...." name="user_text_chat">
+                <input type="file" accept="image/*,video/*,audio/*" name="user_visual_chat" multiple>
                 <input type="submit" value="Confrim">
             </form>
             {% endif %}

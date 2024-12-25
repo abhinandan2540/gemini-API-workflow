@@ -142,3 +142,20 @@ class Message(models.Model):
 
     def __str__(self):
         return self.body[0:50]
+
+
+# for chatting with respective user
+
+class ChatUser(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_text_chat = models.TextField()
+    user_visual_chat = models.FileField(
+        upload_to="uploaded_files/", null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-updated', '-created']
+
+    def __str__(self):
+        return self.user_text_chat
