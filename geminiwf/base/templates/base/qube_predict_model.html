@@ -19,7 +19,15 @@
         <h1>QUBE PREDICTION MODEL</h1>
         <hr>
         <div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
 
+                <input type="text" name="user_text_prompt" placeholder="Prompt...">
+                <input type="file" accept=".csv, .xls, .xlsx" name="user_input_file">
+                <input type="text" name="user_prediction_model1" placeholder="Parameter 1......">
+                <input type="text" name="user_prediction_model2" placeholder="Parameter 2......">
+                <button>Submit</button>
+            </form>
         </div>
     </div>
 </div>

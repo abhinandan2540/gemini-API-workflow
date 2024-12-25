@@ -1,4 +1,10 @@
 
+import io
+from base.models import qubePredictionModel
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+import pandas as pd
 from django.core.files.storage import FileSystemStorage
 from base.models import Message
 from django.http import HttpResponse
