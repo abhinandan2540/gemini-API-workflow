@@ -1,4 +1,5 @@
 
+from .forms import QubePredictionForm
 import io
 from base.models import qubePredictionModel
 from sklearn.model_selection import train_test_split
@@ -783,7 +784,7 @@ def communityUserProfile(request, pk):
 
 # chatting to the user
 
-"""     
+"""
 def chatUser(request, pk):
 
     user = User.objects.get(id=pk)
@@ -818,8 +819,118 @@ def deleteUserChat(request, pk):
 
     """
 
-
 # QUBE PREDICTION
+
+
+@login_required(login_url='loginUser')
 def qubePredict(request):
-    context = {}
+
+    qube_predict = qubePredictionModel.objects.filter(user=request.user)
+
+    user_text_prompt = request.POST.get('user_text_prompt')
+    user_input_file = request.FILES.get('user_input_file')
+    user_prediction_model1 = request.POST.get('user_prediction_model1')
+    user_prediction_model2 = request.POST.get('user_prediction_model2')
+
+    csv_graph = None
+    xl_graph = None
+    csv_future_x = None
+    csv_future_y = None
+    xl_future_x = None
+    xl_future_y = None
+
+    if request.method == "POST":
+        form = qubePredictionModel.objects.create(
+            user=request.user,
+            user_text_prompt=user_text_prompt,
+            user_input_file=user_input_file,
+            user_prediction_model1=user_prediction_model1,
+            user_prediction_model2=user_prediction_model2
+        )
+
+        if form:
+
+            # for csv type of data
+            if form.user_input_file.name.endswith('.csv'):
+                csv_data = pd.read_csv(form.user_input_file)
+
+                if user_prediction_model1 not in csv_data.columns.tolist() or user_prediction_model2 not in csv_data.columns.tolist():
+                    return HttpResponse(f"Error: Columns '{user_prediction_model1}' or '{user_prediction_model2}' not found in the file.", status=400)
+
+                x = csv_data[[user_prediction_model1]].values.reshape(-1, 1)
+                y = csv_data[user_prediction_model2].values.reshape(-1)
+
+                x_train, x_test, y_train, y_test = train_test_split(
+                    x, y, test_size=0.2, random_state=42)
+                model = LinearRegression()
+                model.fit(x_train, y_train)
+
+                csv_future_x = [[max(x)[0]+i] for i in range(1, 11)]
+                csv_future_y = model.predict(csv_future_x)
+
+                # for the  graphing part
+                plt.figure(figsize=(10, 6))
+                plt.scatter(x, y, label='Data Points', color='blue')
+                plt.plot(x, model.predict(x),
+                         label='Regression Line', color='red')
+                plt.scatter([x[0] for x in csv_future_x], csv_future_y,
+                            label='Future Predictions', color='green')
+                plt.xlabel(user_prediction_model1)
+                plt.ylabel(user_prediction_model2)
+                plt.title('QUBE Prediction Graph')
+                plt.legend()
+
+                buffer = io.BytesIO()
+                plt.savefig(buffer, format='png')
+                buffer.seek(0)
+                image_png = buffer.getvalue()
+                buffer.close()
+                csv_graph = base64.b64encode(image_png).decode('utf-8')
+
+    # for dealing with excel type of data
+            elif form.user_input_file.name.endswith('.xls') or form.user_input_file.name.endswith('.xlsx'):
+                xl_data = pd.read_excel(form.user_input_file)
+
+                if user_prediction_model1 not in xl_data.columns.tolist() or user_prediction_model2 not in xl_data.columns.tolist():
+                    return HttpResponse(f"Error: Columns '{user_prediction_model1}' or '{user_prediction_model2}' not found in the file.", status=400)
+
+                x = xl_data[[user_prediction_model1]].values.reshape(-1, 1)
+                y = xl_data[user_prediction_model2].values.reshape(-1)
+
+                x_train, x_test, y_train, y_test = train_test_split(
+                    x, y, test_size=0.2, random_state=42)
+                model = LinearRegression()
+                model.fit(x_train, y_train)
+
+                xl_future_x = [[max(x)[0]+i] for i in range(1, 11)]
+                xl_future_y = model.predict(xl_future_x)
+
+                # for the  graphing part
+                plt.figure(figsize=(10, 6))
+                plt.scatter(x, y, label='Data Points', color='blue')
+                plt.plot(x, model.predict(x),
+                         label='Regression Line', color='red')
+                plt.scatter([x[0] for x in xl_future_x], xl_future_y,
+                            label='Future Predictions', color='green')
+                plt.xlabel(user_prediction_model1)
+                plt.ylabel(user_prediction_model2)
+                plt.title('QUBE Prediction Graph')
+                plt.legend()
+
+                buffer = io.BytesIO()
+                plt.savefig(buffer, format='png')
+                buffer.seek(0)
+                image_png = buffer.getvalue()
+                buffer.close()
+                xl_graph = base64.b64encode(image_png).decode('utf-8')
+
+            else:
+                return HttpResponse("Unsupported file type. Please upload a CSV or Excel file.", status=400)
+
+    context = {'csv_graph': csv_graph,
+               'csv_future_prediction': [(float(x[0]), float(y)) for x, y in zip(csv_future_x, csv_future_y)] if csv_future_x is not None and csv_future_y is not None else None,
+               'xl_graph': xl_graph,
+               'xl_future_prediction':  [(float(x[0]), float(y)) for x, y in zip(xl_future_x, xl_future_y)] if xl_future_x is not None and xl_future_y is not None else None,
+               'qube_predict': qube_predict}
+
     return render(request, 'base/qube_predict_model.html', context)

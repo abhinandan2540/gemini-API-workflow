@@ -19,13 +19,40 @@
         <h1>QUBE PREDICTION MODEL</h1>
         <hr>
         <div>
+            <h1>QUBE Prediction Graph</h1>
+            <hr>
+            {% if csv_graph %}
+            <div>
+                <img src="data:image/png;base64,{{ csv_graph }}" alt="QUBE Prediction Graph">
+                <h2>Future Predictions</h2>
+                <ul>
+                    {% for x, y in csv_future_prediction %}
+                    <li>X: {{ x }}, Predicted Y: {{ y }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% if xl_graph %}
+            <div>
+                <img src="data:image/png;base64,{{ xl_graph }}" alt="QUBE Prediction Graph">
+                <h2>Future Predictions</h2>
+                <ul>
+                    {% for x, y in xl_future_prediction %}
+                    <li>X: {{ x }}, Predicted Y: {{ y }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        <hr>
+        <div>
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 <input type="text" name="user_text_prompt" placeholder="Prompt...">
                 <input type="file" accept=".csv, .xls, .xlsx" name="user_input_file">
-                <input type="text" name="user_prediction_model1" placeholder="Parameter 1......">
-                <input type="text" name="user_prediction_model2" placeholder="Parameter 2......">
+                <input type="text" name="user_prediction_model1" placeholder="Parameter X......">
+                <input type="text" name="user_prediction_model2" placeholder="Parameter Y......">
                 <button>Submit</button>
             </form>
         </div>
