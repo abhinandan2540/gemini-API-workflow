@@ -5,9 +5,7 @@
     }
 </style>
 
-{% extends 'main.html' %}
 
-{% block content %}
 
 
 <div class="chat-room">
@@ -33,6 +31,7 @@
             {% for chat in user_chat_message %}
             <div>
                 <p>{{ chat.user_text_chat }}</p>
+                <hr>
             </div>
             {% endfor%}
 
@@ -53,9 +52,3 @@
     </div>
 
 </div>
-
-
-
-
-
-{% endblock %}

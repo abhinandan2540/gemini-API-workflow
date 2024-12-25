@@ -778,8 +778,9 @@ def communityUserProfile(request, pk):
 
 # chatting to the user
 
-
+"""     
 def chatUser(request, pk):
+
     user = User.objects.get(id=pk)
     topics = Topic.objects.all()
 
@@ -797,11 +798,17 @@ def chatUser(request, pk):
 
     context = {'topics': topics, 'user': user,
                'user_chat_message': user_chat_message}
+
     return render(request, 'social/community_chat_user.html', context)
 
 
-# delete chat functionality
+# # delete chat functionality
 
-def deleteChatUser(request, pk):
-    context = {}
-    return render()
+def deleteUserChat(request, pk):
+
+    delete_user_chat = ChatUserModel.objects.get(id=pk)
+
+    context = {'delete_user_chat': delete_user_chat}
+    return render(request, 'social/delete_user_chat.html', context)
+
+    """
