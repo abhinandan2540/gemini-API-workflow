@@ -146,7 +146,7 @@ class Message(models.Model):
 
 # for chatting with respective user
 
-class ChatUser(models.Model):
+class ChatUserModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     user_text_chat = models.TextField()
     user_visual_chat = models.FileField(

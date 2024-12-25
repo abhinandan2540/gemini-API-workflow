@@ -30,6 +30,11 @@
         </div>
 
         <div>
+            {% for chat in user_chat_message %}
+            <div>
+                <p>{{ chat.user_text_chat }}</p>
+            </div>
+            {% endfor%}
 
         </div>
 
@@ -40,7 +45,7 @@
 
                 <input type="text" placeholder="...." name="user_text_chat">
                 <input type="file" accept="image/*,video/*,audio/*" name="user_visual_chat" multiple>
-                <input type="submit" value="Confrim">
+                <button>send</button>
             </form>
             {% endif %}
         </div>

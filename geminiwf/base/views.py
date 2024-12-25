@@ -1,4 +1,5 @@
 
+from base.models import ChatUserModel
 from django.core.files.storage import FileSystemStorage
 from base.models import Message
 from django.http import HttpResponse
@@ -777,12 +778,30 @@ def communityUserProfile(request, pk):
 
 # chatting to the user
 
+
 def chatUser(request, pk):
     user = User.objects.get(id=pk)
     topics = Topic.objects.all()
 
     user_text_chat = request.POST.get('user_text_chat')
-    user_visual_chat = request.POST.get('user_visual_chat')
+    user_visual_chat = request.POST.get('user_visual_chat', None)
 
-    context = {'topics': topics, 'user': user}
+    user_chat_message = ChatUserModel.objects.filter(user=request.user)
+
+    if request.method == "POST":
+        ChatUserModel.objects.create(
+            user=request.user,
+            user_text_chat=user_text_chat,
+            user_visual_chat=user_visual_chat
+        )
+
+    context = {'topics': topics, 'user': user,
+               'user_chat_message': user_chat_message}
     return render(request, 'social/community_chat_user.html', context)
+
+
+# delete chat functionality
+
+def deleteChatUser(request, pk):
+    context = {}
+    return render()
