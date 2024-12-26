@@ -1,0 +1,163 @@
+*{
+    font-family: "Roboto", serif;
+
+}
+
+body{
+    background-color:#212121;
+    
+}
+
+
+
+/* setting up the navbar */
+
+.cube-loader {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: auto;
+  }
+  
+  .cube {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-color: #333;
+    border: 2px solid #fff;
+    animation: foldCube 2.4s infinite linear;
+  }
+  
+  /* Individual cube positioning */
+  .cube1 {
+    top: 0;
+    left: 0;
+    transform-origin: 100% 100%;
+  }
+  .cube2 {
+    top: 0;
+    right: 0;
+    transform-origin: 0 100%;
+  }
+  .cube3 {
+    bottom: 0;
+    right: 0;
+    transform-origin: 0 0;
+  }
+  .cube4 {
+    bottom: 0;
+    left: 0;
+    transform-origin: 100% 0;
+  }
+  
+  /* Keyframes for the folding animation */
+  @keyframes foldCube {
+    0%,
+    10% {
+      transform: perspective(140px) rotateX(-180deg);
+      opacity: 0;
+    }
+    25%,
+    75% {
+      transform: perspective(140px) rotateX(0deg);
+      opacity: 1;
+    }
+    90%,
+    100% {
+      transform: perspective(140px) rotateY(180deg);
+      opacity: 0;
+    }
+  }
+  
+  /* Animation delay for each cube */
+  .cube1 {
+    animation-delay: 0.3s;
+  }
+  .cube2 {
+    animation-delay: 0.6s;
+  }
+  .cube3 {
+    animation-delay: 0.9s;
+  }
+  .cube4 {
+    animation-delay: 1.2s;
+  }
+  
+
+  /* for the qube logo and animation set up */
+
+  .QUBE_logo_link{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-left: 10%;
+  }
+
+ .qube_text{
+    margin-top: 6%;
+    font-size: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+    margin-top: 0px;
+ } 
+.qube_text a{
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    
+} 
+
+.qube_text a:hover{
+    border: 2px solid springgreen;
+    padding: 5px;
+    border-radius: 10px;
+    transform: scale(0.5);
+}
+
+
+/* for login section */
+.login_section{
+    margin-right: 10%;
+    padding-top: 1%;
+}
+
+.before_user_login a{
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.before_user_login a:hover{
+    border: 2px solid springgreen;
+    padding: 5px;
+    border-radius: 5px;
+    transform: scale(0.5);
+}
+
+/* after user logged in */
+
+.hello_user{
+    color: white;
+    border: 2px solid springgreen;
+    border-radius: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+}
+
+.hello_user_logout a{
+     text-decoration: none;
+     color: white;
+     transition: all 0.3s ease;
+}
+
+.hello_user_logout a:hover{
+    border: 2px solid springgreen;
+    padding: 5px;
+    border-radius: 5px;
+    transform: scale(0.5);
+}
+
+/* user registration part */
+

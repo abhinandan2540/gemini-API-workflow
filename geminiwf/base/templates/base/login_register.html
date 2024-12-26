@@ -7,11 +7,11 @@
     <div>
         <form action="" method="POST">
             {% csrf_token %}
-            <label for="">Username:</label>
-            <input type="text" placeholder="..." name="username">
-            <label for="">Password:</label>
-            <input type="password" placeholder="..." name="password">
-            <input type="submit" value="Login">
+            <label for="" id="user_username">Username:</label>
+            <input type="text" placeholder="..." name="username" id="user_username_place">
+            <label for="" id="user_password">Password:</label>
+            <input type="password" placeholder="..." name="password" id="user_password_place">
+            <input type="submit" value="Login" id="user_registration_submit">
 
         </form>
         <p>Haven't signed up yet?</p>
