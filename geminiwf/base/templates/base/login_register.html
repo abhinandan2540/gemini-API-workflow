@@ -4,18 +4,28 @@
 
 <div>
     {% if page == 'loginUser' %}
-    <div>
+    <div class="user_login_form">
         <form action="" method="POST">
             {% csrf_token %}
-            <label for="" id="user_username">Username:</label>
-            <input type="text" placeholder="..." name="username" id="user_username_place">
-            <label for="" id="user_password">Password:</label>
-            <input type="password" placeholder="..." name="password" id="user_password_place">
-            <input type="submit" value="Login" id="user_registration_submit">
+            <div class="login_requisit">
+                <div>
+                    <label for="" id="user_username">USERNAME:</label>
+                    <input type="text" placeholder="" name="username" id="user_username_place">
+                </div>
+                <div>
+                    <label for="" id="user_password">PASSWORD:</label>
+                    <input type="password" placeholder="" name="password" id="user_password_place">
+                </div>
+                <div>
+                    <input type="submit" value="Login" id="user_registration_submit">
+                </div>
+            </div>
 
         </form>
-        <p>Haven't signed up yet?</p>
-        <a href="{% url 'registerUser' %}">Sign Up</a>
+        <div class="signup">
+            <p id="user_not_signed_up_yet">Haven't signed up yet?</p>
+            <a href="{% url 'registerUser' %}" id="sign_up_link">Sign Up</a>
+        </div>
     </div>
 
     {% else %}
