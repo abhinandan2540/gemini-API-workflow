@@ -155,6 +155,76 @@
         border-radius: 5px;
         transform: scale(0.5);
     }
+
+    .qube_text_model_heading h1 {
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        padding-left: 30%;
+
+    }
+
+    /* from the message qube */
+    #message_qube {
+        color: springgreen;
+        font-size: 20px;
+        font-weight: 700;
+
+    }
+
+    #qube_message_input {
+        width: 48%;
+        height: 25px;
+        border: 2px solid springgreen;
+        border-radius: 5px;
+        border-style: none;
+        outline: none;
+        margin-left: 5%;
+    }
+
+    #send_button {
+        width: 10%;
+        height: 30px;
+        margin-left: 15%;
+        font-size: 15px;
+        font-weight: 700;
+        border-radius: 5px;
+        border-style: none;
+        cursor: pointer;
+    }
+
+    #send_button:hover {
+        color: white;
+        background-color: springgreen;
+
+    }
+
+    #qube_text_feed_heading {
+        margin-left: 5%;
+        border: 2px solid springgreen;
+        padding-left: 13%;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .qube_text_history {
+        color: springgreen;
+    }
+
+    .qube_text_history h3 a {
+        color: springgreen;
+        text-decoration: none;
+    }
+
+    #delete_text_message {
+        color: white;
+        text-decoration: none;
+        border: 2px solid springgreen;
+        padding: 2px;
+        border-radius: 5px;
+
+    }
 </style>
 
 {% extends 'main.html' %}
@@ -169,7 +239,7 @@
 
 
     <div class="qube-text-model">
-        <div>
+        <div class="qube_text_model_heading">
             <h1>QUBE TEXT MODEL</h1>
         </div>
         <br>
@@ -177,9 +247,9 @@
         <br>
         <br>
         <form action="{% url 'textModel' %}" method="GET">
-            <label for="">Message QUBE:</label>
-            <input type="text" name="query" value="{{ query }}">
-            <button>Select</button>
+            <label for="" id="message_qube">Message QUBE</label>
+            <input type="text" name="query" value="{{ query }}" id="qube_message_input">
+            <button id="send_button">Send</button>
         </form>
         <br>
         <br>
@@ -197,13 +267,13 @@
 
     <div class="text-history">
         <!-- for text history -->
-        <h1>QUBE TEXT FEED</h1>
+        <h1 id="qube_text_feed_heading">QUBE TEXT FEED</h1>
         <ul>
             {% for chat in text_history %}
-            <div>
+            <div class="qube_text_history">
                 <li>
                     <h3><a href="{% url 'textFullResponseView' chat.id %}">{{ chat.query }}</a></h3>
-                    <a href="{% url 'deleteTextModelHistory' chat.id %}">Delete</a>
+                    <a href="{% url 'deleteTextModelHistory' chat.id %}" id="delete_text_message">Delete</a>
                     <hr>
                 </li>
             </div>

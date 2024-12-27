@@ -1,14 +1,54 @@
+<style>
+    #delete_text_sentence {
+        color: white;
+
+    }
+
+    .delete_text_page {
+        border: 2px solid springgreen;
+        justify-self: center;
+        padding: 30px;
+        margin-top: 10%;
+        border-radius: 5px;
+    }
+
+    .confrim_and_delete_buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #confrim_button {
+        background-color: springgreen;
+        cursor: pointer;
+        border-radius: 5px;
+        border-style: none;
+        padding: 10px;
+        color: white;
+        font-size: 15px;
+        font-weight: 700;
+
+
+
+    }
+</style>
+
+
 {% extends 'main.html' %}
 
 {% block content %}
 
-<div>
+<div class="delete_text_page">
     <form action="" method="POST">
         {% csrf_token %}
 
-        <h3>Are you want to delete this {{ obj }}?</h3>
-        <a href="{{ request.META.HTTP_REFERER }}">Go back</a>
-        <input type="submit" value="Confrim">
+        <h3 id="delete_text_sentence">Are you want to delete this {{ obj }}?</h3>
+        <div class="confrim_and_delete_buttons">
+            <button style="padding: 10px; border-radius: 5px; border-style: none; background-color: springgreen; "><a
+                    style="text-decoration: none; color: white;font-size: 15px; font-weight: 700;"
+                    href="{{ request.META.HTTP_REFERER }}">Go
+                    back</a></button>
+            <input type="submit" value="Confrim" id="confrim_button">
+        </div>
     </form>
 </div>
 

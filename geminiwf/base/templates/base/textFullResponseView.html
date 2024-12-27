@@ -1,19 +1,35 @@
+<style>
+    .text_full_response_view {
+        border: 2px solid springgreen;
+        justify-self: center;
+        margin-top: 5%;
+        padding: 15px;
+        border-radius: 10px;
+    }
+</style>
+
+
 {% extends 'main.html' %}
 
 {% block content %}
 
 <div>
     <div>
-        <button><a href="{% url 'textModel' %}">Back to Text Model</a></button>
+        <button
+            style="padding: 10px; margin-top: 3%; border-radius: 5px; border-style: none; background-color: springgreen;"><a
+                style="text-decoration: none; color: white; font-size: 15px;" href="{% url 'textModel' %}">Back to Text
+                Model</a></button>
     </div>
 
-    <strong>
-        <p>{{ chat.user }}</p>
-    </strong>
-    <div>
-        <p>{{ chat.query }}</p>
-        <p>{{ chat.created }}</p>
-        <p>{{ chat.response }}</p>
+    <div class="text_full_response_view">
+        <strong>
+            <p style="color: white;">{{ chat.user }}</p>
+        </strong>
+        <div>
+            <h2 style="color: white;">{{ chat.query }}</h2>
+            <p style="color: white;">{{ chat.created }}</p>
+            <p style="color: white;">{{ chat.response }}</p>
+        </div>
     </div>
 
 </div>
