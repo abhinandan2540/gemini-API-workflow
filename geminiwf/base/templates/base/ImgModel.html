@@ -184,6 +184,40 @@
 
 
     }
+
+    /* for the qube image feed */
+    #qube_img_feed_heading {
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        padding-left: 25%;
+        margin-left: 10px;
+        border-radius: 5px;
+    }
+
+    #chat_user_text_prompt {
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        text-decoration: none;
+        border-radius: 5px;
+
+    }
+
+    #delete_button {
+        text-decoration: none;
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+
+
+    }
+
+    #flexing_img_model {
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
 
 
@@ -222,15 +256,18 @@
         </div>
     </div>
     <div>
-        <h2>QUBE IMG FEED</h2>
+        <h2 id="qube_img_feed_heading">QUBE IMG FEED</h2>
         <div>
             {% for chat in user_img_text_chats %}
             <div>
-                <h3><a href="{% url 'imageFullResponseView' chat.id  %}">{{ chat.user_text_prompt }}</a></h3>
-                <span><a href="{% url 'deleteImageQuery' chat.id %}">Delete</a></span>
+                <div id="flexing_img_model">
+                    <h3><a href="{% url 'imageFullResponseView' chat.id  %}" id="chat_user_text_prompt">
+                            {{ chat.user_text_prompt }}</a></h3>
+                    <span><a href="{% url 'deleteImageQuery' chat.id %}" id="delete_button">Delete</a></span>
+                </div>
                 <img src="{{ chat.user_image_prompt.url }}" alt="uploaded image"
                     style="width: 400px; height: 200px; border-radius: 10px;">
-
+                <hr>
             </div>
             {% endfor %}
         </div>

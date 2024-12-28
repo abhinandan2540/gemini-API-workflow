@@ -1,15 +1,37 @@
+<style>
+    .delete_img_query_model_form {
+        border: 2px solid springgreen;
+        justify-self: center;
+        padding: 50px;
+        margin-top: 10%;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+
+
+
 {% extends 'main.html' %}
 
 {% block content %}
 
 
-<div>
+<div class="delete_img_query_model_form">
     <form action="" method="POST">
         {% csrf_token %}
 
-        <p>Are you want to delete : {{ obj }} ?</p>
-        <a href="{{ request.META.HTTP_REFERER }}">Go back</a>
-        <input type="submit" value="Confrim">
+        <p style="color: white; font-size: 20px;">Are you want to delete : {{ obj }} ?</p>
+        <div class="buttons">
+            <button
+                style="width: 18%; border-radius: 5px; border-style: none; font-size: 15px; text-decoration: none; font-weight: 700 ; color: white; background-color: springgreen;"><a
+                    href="{{ request.META.HTTP_REFERER }}">Go
+                    back</a></button>
+            <input type="submit" value="Confrim"
+                style="width: 18%; padding: 5px; border-radius: 5px; cursor: pointer; font-size: 15px; font-weight: 700; color: white; background-color: springgreen;">
+        </div>
     </form>
 </div>
 
