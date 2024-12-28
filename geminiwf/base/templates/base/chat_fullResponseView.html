@@ -5,12 +5,16 @@
 <div>
 
     <div>
-        <button><a href="{% url 'intactChat' %}">Go Back</a></button>
+        <button style="padding: 10px; background-color: springgreen; border-radius: 5px; border-style: none;"><a
+                href="{% url 'intactChat' %}"
+                style="text-decoration: none; font-size: 15px; font-weight: 700; color: white;">Go Back</a></button>
     </div>
 
+    <div style="border: 2px solid springgreen; padding: 10px; border-radius: 5px; margin-top: 5%;">
 
-    <h2>{{ chat_query.user_chat_prompt }}</h2>
-    <p>{{ chat_query.model_response }}</p>
+        <h2 style="color: white;">{{ chat_query.user_chat_prompt }}</h2>
+        <p style="color: white;">{{ chat_query.model_response }}</p>
+    </div>
 </div>
 
 

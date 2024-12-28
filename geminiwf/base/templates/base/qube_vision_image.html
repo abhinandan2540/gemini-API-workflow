@@ -154,6 +154,41 @@
         border-radius: 5px;
         transform: scale(0.5);
     }
+
+    #img_text_user_input {
+        height: 35px;
+        width: 40%;
+        font-size: 20px;
+
+    }
+
+    #qube_vision_img_user_query {
+        color: springgreen;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border-radius: 5px;
+
+    }
+
+    #qube_vision_img_user_query:hover {
+        border: 2px solid springgreen;
+        padding: 5px;
+        transform: scale(0.5);
+    }
+
+
+    #del_btn {
+        color: white;
+        text-decoration: none;
+        border: 2px solid springgreen;
+        padding: 3px;
+        border-radius: 5px;
+        background-color: springgreen;
+        font-weight: 700;
+
+
+
+    }
 </style>
 
 
@@ -168,7 +203,8 @@
 
     <div>
         <div>
-            <h1>QUBE VISION IMAGE</h1>
+            <h1 style="color: white; border: 2px solid springgreen; border-radius: 5px; padding-left: 20%;">QUBE VISION
+                IMAGE MODEL</h1>
         </div>
         <br>
         <hr>
@@ -179,15 +215,16 @@
 
 
             <input type="file" accept="image/*" name="imageQuery" multiple>
-            <input type="text" name="textQuery">
-            <button>Submit</button>
+            <input type="text" name="textQuery" id="img_text_user_input">
+            <button
+                style="margin-left: 10%; padding: 10px; width: 10%; border-radius: 5px; font-size: 15px; font-weight: 700; color: white; background-color: springgreen; border-style: none; cursor: pointer;">Send</button>
         </form>
         <br>
         <br>
         <hr>
         <div>
             {% for line in vision_img_text_response %}
-            <div>
+            <div style="color: white;">
                 <p>{{ line|safe }}</p>
             </div>
             {% endfor %}
@@ -195,15 +232,23 @@
     </div>
 
     <div>
-        <h1>QUBE VISION FEED</h1>
+        <h1
+            style="color: white; border: 2px solid springgreen; margin-left: 10px; padding-left: 13%; border-radius: 5px;">
+            QUBE VISION FEED
+        </h1>
         <hr>
         <div>
             {% for chat in qube_vision_img_text %}
             <div>
-                <h3><a href="{% url 'fullResponseQubeVision' chat.id %}">{{ chat.user_text_query }}</a></h3>
-                <a href="{% url 'deleteQubeVisionImage' chat.id %}">Delete</a>
+                <div class="for_fixing_flex">
+                    <h3><a href="{% url 'fullResponseQubeVision' chat.id %}" id="qube_vision_img_user_query">
+                            {{ chat.user_text_query }}</a></h3>
+                    <a href="{% url 'deleteQubeVisionImage' chat.id %}" id="del_btn">Delete</a>
+                </div>
+                <br>
                 <img src="{{ chat.user_img_query.url }}" alt="uploaded images"
                     style="width: 400px; height: 200px; border-radius: 10px;">
+                <hr>
             </div>
             {% endfor %}
         </div>

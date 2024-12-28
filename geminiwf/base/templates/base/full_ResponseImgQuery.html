@@ -1,21 +1,34 @@
+<style>
+    .vision_img_response {
+        border: 2px solid springgreen;
+        border-radius: 5px;
+        padding: 15px;
+        margin-top: 5%;
+
+    }
+</style>
+
 {% extends 'main.html' %}
 
 {% block content %}
 
 <div>
 
-    <h1>QUBE VISION IMG QUERY</h1>
-    <hr>
-    <button><a href="{% url 'qubeVisionImage' %}">Go Back</a></button>
-    <div>
-        <h3>
+
+    <button style="padding: 10px; background-color: springgreen; border-radius:5px; border-style: none;"><a
+            href="{% url 'qubeVisionImage' %}"
+            style="color: white; text-decoration: none; font-size: 15px; font-weight: 700;">Go
+            Back</a></button>
+
+    <div class="vision_img_response">
+        <h3 style="color: white;">
             {{ vision_img_response.user_text_query }}
         </h3>
 
         <div>
             <img src="{{ vision_img_response.user_img_query.url }}" alt=""
                 style="width: 640px; height: 480px; border-radius: 10px;">
-            <p>{{ vision_img_response.response }}</p>
+            <p style="color: white;">{{ vision_img_response.response }}</p>
         </div>
     </div>
 </div>

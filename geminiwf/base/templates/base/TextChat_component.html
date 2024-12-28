@@ -154,6 +154,41 @@
         border-radius: 5px;
         transform: scale(0.5);
     }
+
+    #user_chat_prompt_input {
+        margin-left: 20%;
+        width: 50%;
+        height: 8%;
+        font-size: 20px;
+    }
+
+    #user_chat_prompt_text_chat {
+        color: springgreen;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+
+
+    }
+
+    #user_chat_prompt_text_chat:hover {
+        border: 2px solid springgreen;
+        padding: 5px;
+        transform: scale(0.5);
+    }
+
+    #text_chat_delete_btn {
+        color: white;
+        text-decoration: none;
+        border: 2px solid springgreen;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 700;
+        background-color: springgreen;
+        border-radius: 5px;
+
+
+    }
 </style>
 
 {% extends 'main.html' %}
@@ -170,24 +205,24 @@
 
     <div>
         <div>
-            <h1>QUBE CHAT MODEL</h1>
+            <h1 style="color: white; border: 2px solid springgreen; padding-left: 28%; border-radius: 5px;">QUBE CHAT
+                MODEL</h1>
         </div>
         <br>
         <hr>
         <br>
         <form action="{% url 'intactChat' %}" method="GET">
-            <label for="">USER:</label>
-            <input type="text" name="user_chat_prompt" value="{{ user_chat_prompt}}" placeholder="Message QUBE...">
+            <label style="color:springgreen; font-size: 25px; font-weight: 700;" for="">USER</label>
+            <input type="text" name="user_chat_prompt" value="{{ user_chat_prompt}}" id="user_chat_prompt_input">
         </form>
-        <br>
         <br>
         <hr>
         <div>
             <div class="formatted_content">
-                <p>QUBE:</p>
+                <p style="color:springgreen; font-size: 25px; font-weight: 700;">QUBE:</p>
                 {% for line in chat_results %}
                 <div>
-                    <div class="formatted-line">
+                    <div class="formatted-line" style="color: white;">
                         <p>{{ line|safe }}</p>
                     </div>
                 </div>
@@ -197,11 +232,15 @@
     </div>
 
     <div>
-        <h1>CHAT INTERAC FEED</h1>
+        <h1
+            style="color: white; border: 2px solid springgreen; padding: 5px; margin-left: 10px;padding-left: 30px; border-radius: 5px;">
+            CHAT INTERAC FEED</h1>
         {% for chat in user_interac_chat %}
         <div>
-            <h3><a href="{% url 'chatFullResponseView' chat.id %}">{{ chat.user_chat_prompt }}</a></h3>
-            <a href="{% url 'deleteChat' chat.id %}">Delete</a>
+            <h3><a href="{% url 'chatFullResponseView' chat.id %}" id="user_chat_prompt_text_chat">
+                    {{ chat.user_chat_prompt }}</a>
+            </h3>
+            <a href="{% url 'deleteChat' chat.id %}" id="text_chat_delete_btn">Delete</a>
             <hr>
         </div>
         {% endfor %}
