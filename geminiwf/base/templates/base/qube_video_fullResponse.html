@@ -2,6 +2,11 @@
     .video-full-response {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        border: 2px solid springgreen;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 5%;
+
     }
 </style>
 
@@ -12,17 +17,19 @@
 
 
 <div>
-    <button><a href="{% url 'qubeVisionVideoQuery' %}">Go Back</a></button>
+    <button style="padding: 10px; background-color: springgreen; border-radius: 5px; border-style: none;"><a
+            href="{% url 'qubeVisionVideoQuery' %}"
+            style="text-decoration: none; color: white; font-size: 15px; font-weight: 700;">Go Back</a></button>
 </div>
 
 <div class="video-full-response">
     <div>
-        <h2>{{ qube_video_full.user_text_prompt }}</h2>
+        <h2 style="color: white;">{{ qube_video_full.user_text_prompt }}</h2>
         <video src="{{ qube_video_full.user_video_prompt.url }}"
             style="width: 640px; height: 480px; border-radius: 10px;" controls> </video>
     </div>
     <div>
-        <p>{{ qube_video_full.model_response }}</p>
+        <p style="color: white;">{{ qube_video_full.model_response }}</p>
     </div>
 </div>
 

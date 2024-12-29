@@ -154,6 +154,51 @@
         border-radius: 5px;
         transform: scale(0.5);
     }
+
+    #qube_user_video_query_input {
+        height: 35px;
+        width: 45%;
+    }
+
+    #send_btn_video_query {
+        margin-left: 5%;
+        padding: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        width: 10%;
+        border-radius: 5px;
+        color: white;
+        background-color: springgreen;
+        border-style: none;
+        cursor: pointer;
+
+    }
+
+    #user_video_text_prompt {
+        color: springgreen;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+    }
+
+    #user_video_text_prompt:hover {
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        transform: scale(0.5);
+    }
+
+    #delete_for_user_video_query {
+        color: white;
+        text-decoration: none;
+        border: 2px solid springgreen;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 700;
+        background-color: springgreen;
+        border-radius: 5px;
+    }
 </style>
 
 
@@ -167,7 +212,8 @@
         {% include 'base/Models_component_ai.html' %}
     </div>
     <div>
-        <h1>QUBE VISION VIDEO MODEL</h1>
+        <h1 style="color: white; border: 2px solid springgreen; padding: 5px; border-radius: 5px; padding-left: 23%;">
+            QUBE VISION VIDEO MODEL</h1>
         <br>
         <hr>
         <br>
@@ -176,23 +222,25 @@
             {% csrf_token %}
 
             <input type="file" accept="video/*" name="video_query">
-            <input type="text" name="text_query">
-            <button>Search</button>
+            <input type="text" name="text_query" id="qube_user_video_query_input">
+            <button id="send_btn_video_query">Send</button>
         </form>
         <br>
         <br>
         <hr>
         <div>
             {% for line in vision_img_video_response %}
-            <div>
-                <p>{{ line|safe }}</p>
+            <div style="color: white;">
+                <p style="color: white;">{{ line|safe }}</p>
             </div>
             {% endfor %}
         </div>
     </div>
 
     <div>
-        <h1>QUBE VIDEO FEED</h1>
+        <h1
+            style="color: white; border: 2px solid springgreen; padding: 5px; border-radius: 5px; padding-left: 13%; margin-left: 5%;">
+            QUBE VIDEO FEED</h1>
         <hr>
         <div>
             {% for chat in qube_video_feed %}
@@ -200,10 +248,12 @@
                 <ul>
                     <li>
 
-                        <h3><a href="{% url 'qubeVideoFullResponse' chat.id %}">{{ chat.user_text_prompt }}</a></h3>
+                        <h3><a href="{% url 'qubeVideoFullResponse' chat.id %}" id="user_video_text_prompt">
+                                {{ chat.user_text_prompt }}</a></h3>
+                        <a href="{% url 'deleteQubeVideo' chat.id %}" id="delete_for_user_video_query">Delete</a>
                         <video src="{{ chat.user_video_prompt.url }}"
                             style="width: 320px; height: 240px; border-radius: 10px;" controls> </video>
-                        <a href="{% url 'deleteQubeVideo' chat.id %}">Delete</a>
+
                         <hr>
                     </li>
                 </ul>
