@@ -154,6 +154,42 @@
         border-radius: 5px;
         transform: scale(0.5);
     }
+
+    #qube_audio_query_user_input {
+        height: 35px;
+        width: 45%;
+
+    }
+
+    #send_btn_audio_user {
+        margin-left: 6%;
+        width: 10%;
+        padding: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: white;
+        background-color: springgreen;
+        border-radius: 5px;
+        border-style: none;
+        cursor: pointer;
+
+
+    }
+
+    #qube_audio_user_query {
+        color: springgreen;
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+    }
+
+    #qube_audio_user_query:hover {
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        transform: scale(0.5);
+
+    }
 </style>
 
 
@@ -170,7 +206,9 @@
 
     <div>
         <div>
-            <h1>QUBE AUDIO MODEL</h1>
+            <h1
+                style="color: white; border: 2px solid springgreen; padding: 5px; border-radius: 5px; padding-left: 28%;">
+                QUBE AUDIO MODEL</h1>
         </div>
         <br>
         <hr>
@@ -180,30 +218,37 @@
             {% csrf_token %}
 
             <input type="file" accept="audio/*" name="audio_query">
-            <input type="text" name="text_query">
-            <button>Submit</button>
+            <input type="text" name="text_query" id="qube_audio_query_user_input">
+            <button id="send_btn_audio_user">Send</button>
         </form>
         <br>
         <hr>
-        <div>
+        <div style="color: white;">
             {% for line in qube_audio_query %}
             <div>
-                <p>{{ line|safe }}</p>
+                <p style="color: white;">{{ line|safe }}</p>
             </div>
             {% endfor %}
         </div>
     </div>
 
     <div>
-        <h2>QUBE AUDIO FEED</h2>
+        <h2
+            style="color: white; border: 2px solid springgreen; padding: 5px; border-radius: 5px; margin-left: 10px; padding-left: 20%;">
+            QUBE AUDIO FEED</h2>
         <div>
             {% for chat in qube_audio_feed %}
             <div>
                 <ul>
                     <li>
-                        <h3><a href="{% url 'qubeAudioFullResponse'  chat.id %}">{{ chat.user_text }}</a></h3>
+                        <h3><a href="{% url 'qubeAudioFullResponse'  chat.id %}" id="qube_audio_user_query">
+                                {{ chat.user_text }}</a></h3>
+                        <a href="{% url 'deleteAudioQuery' chat.id %}"
+                            style="border: 2px solid springgreen; padding: 8px; text-decoration: none; color: white; font-size: 15px; font-weight: 700; border-radius: 5px; border-style: none; background-color: springgreen; cursor: pointer;">Delete</a>
+                        <br>
+                        <br>
                         <audio src="{{ chat.user_audio.url }}" controls></audio>
-                        <a href="{% url 'deleteAudioQuery' chat.id %}">Delete</a>
+
                         <hr>
                     </li>
                 </ul>

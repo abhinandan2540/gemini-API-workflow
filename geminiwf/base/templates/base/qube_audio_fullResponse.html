@@ -4,12 +4,15 @@
 
 <div>
     <div>
-        <button><a href="{% url 'qubeAudioQuery' %}">Go Back</a></button>
+        <br>
+        <a href="{% url 'qubeAudioQuery' %}"
+            style="border: 2px solid springgreen; padding: 8px; text-decoration: none; color: white; font-size: 15px; font-weight: 700; background-color: springgreen; border-radius: 5px; cursor: pointer;">Go
+            Back</a>
     </div>
-    <div>
-        <h3>{{ audio.user_text }}</h3>
+    <div style="border: 2px solid springgreen; justify-self: center; border-radius: 10px; margin-top: 5%;">
+        <h2 style="color: white; justify-self: center;">{{ audio.user_text }}</h2>
         <audio src="{{ audio.user_audio.url }}" controls></audio>
-        <p>{{ audio.model_response }}</p>
+        <p style="color: white;">{{ audio.model_response }}</p>
     </div>
 </div>
 
