@@ -154,6 +154,17 @@
         border-radius: 5px;
         transform: scale(0.5);
     }
+
+    #qube_generate_code_model {
+        height: 35px;
+        width: 45%;
+        margin-left: 5%;
+
+    }
+
+    #qube_generate_code_confrim {
+        margin-left: 5%;
+    }
 </style>
 
 
@@ -168,7 +179,9 @@
     </div>
     <div>
         <div>
-            <h1>QUBE CODE MODEL</h1>
+            <h1
+                style="color: white; border: 2px solid springgreen; padding: 5px; border-radius: 5px; padding-left: 28%;">
+                QUBE CODE MODEL</h1>
         </div>
         <br>
         <hr>
@@ -176,9 +189,9 @@
         <form action="" method="GET">
             {% csrf_token %}
 
-            <label for="">Message QUBE:</label>
-            <input type="text" name="text_query">
-            <input type="submit" value="Confrim">
+            <label for="" style="color:springgreen; font-size: 20px; font-weight: 700;">Prompt QUBE CODE </label>
+            <input type="text" name="text_query" id="qube_generate_code_model">
+            <input type="submit" value="Confrim" id="qube_generate_code_confrim">
         </form>
         <br>
         <hr>
