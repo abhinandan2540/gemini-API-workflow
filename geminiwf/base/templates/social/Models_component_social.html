@@ -1,8 +1,43 @@
+<style>
+    #qube_social_initial {
+        text-decoration: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    #qube_social_initial:hover {
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        transform: scale(0.5);
+        cursor: pointer;
+
+
+    }
+
+    #qube_community_initial {
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    #qube_community_initial:hover {
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        transform: scale(0.5);
+        cursor: pointer;
+    }
+</style>
+
+
+
+
 <div>
 
     <div class="qube-social">
-        <h2><a href="{% url 'qubeSocial' %}">QUBE SOCIAL</a></h2>
-        <h3><a href="{% url 'communityHome' %}">QUBE COMMUNITY</a></h3>
+        <h2><a href="{% url 'qubeSocial' %}" id="qube_social_initial">QUBE SOCIAL</a></h2>
+        <h3><a href="{% url 'communityHome' %}" id="qube_community_initial">QUBE COMMUNITY</a></h3>
     </div>
 
 </div>
