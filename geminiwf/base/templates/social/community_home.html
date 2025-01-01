@@ -3,6 +3,24 @@
         display: grid;
         grid-template-columns: 1fr 1fr 3fr 1fr;
     }
+
+    #searching_existing_rooms {
+        height: 35px;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    #creating_community_room_link {
+        text-decoration: none;
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: 700;
+        background-color: springgreen;
+        margin-left: 15px;
+    }
 </style>
 
 {% extends 'main.html' %}
@@ -10,15 +28,19 @@
 {% block content %}
 
 <div class="community-home">
+
+    <!-- qube model component -->
     <div>
         {% include 'social/Models_component_social.html' %}
     </div>
 
+
+    <!-- qube topic component -->
     <div>
         <!-- this is for the search functionality for the rooms -->
         <div>
             <form action="{% url 'communityHome' %}" method="GET">
-                <input type="text " name="q" placeholder="Search....">
+                <input type="text " name="q" placeholder="Search...." id="searching_existing_rooms">
             </form>
         </div>
         <hr>
@@ -29,10 +51,15 @@
 
     </div>
 
+    <!-- community main page -->
     <div>
-        <h1>QUBE COMMUNITY</h1>
-        <p>{{ room_count }} rooms available</p>
-        <a href="{% url 'communityCreateRoom' %}">Create Community Room</a>
+        <h1
+            style="color: white; border: 2px solid springgreen; margin-left: 10px; padding: 5px; border-radius: 5px; padding-left: 30%;">
+            QUBE COMMUNITY</h1>
+        <p style="color:springgreen; font-weight: 700; margin-left: 15px;">{{ room_count }} rooms available</p>
+        <a href="{% url 'communityCreateRoom' %}" id="creating_community_room_link">Create Community Room</a>
+        <br>
+        <br>
         <hr>
         <div>
             <div>
@@ -40,7 +67,7 @@
             </div>
         </div>
     </div>
-
+    <!-- qube community activity component -->
     <div>
         <div>
             {% include 'social/community_activity_component.html' %}

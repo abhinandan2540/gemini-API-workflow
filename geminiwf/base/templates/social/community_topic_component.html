@@ -1,10 +1,42 @@
+<style>
+    #qube_topic_names_link {
+        text-decoration: none;
+        color: springgreen;
+        transition: all 0.3s ease;
+
+    }
+
+    #qube_topic_names_link:hover {
+        border: 2px solid white;
+        padding: 5px;
+        border-radius: 5px;
+        transform: scale(0.5);
+    }
+
+
+    #all_link {
+        text-decoration: none;
+        color: springgreen;
+        transition: all 0.3s ease;
+    }
+
+    #all_link:hover {
+        border: 2px solid white;
+        padding: 5px;
+        border-radius: 5px;
+        transform: scale(0.5);
+    }
+</style>
+
+
 <div>
-    <h2>BROWSE TOPICS</h2>
+    <h2 style="color: white; border: 2px solid springgreen; padding: 5px; border-radius: 5px; padding-left: 12%;">
+        BROWSE TOPICS</h2>
     <hr>
-    <h3><a href="{% url 'communityHome' %}">All</a></h3>
+    <h3><a href="{% url 'communityHome' %}" id="all_link">All</a></h3>
     {% for topic in topics %}
     <div>
-        <h3><a href="{% url 'communityHome' %}?q={{ topic.name }}">{{ topic.name }}</a></h3>
+        <h3><a href="{% url 'communityHome' %}?q={{ topic.name }}" id="qube_topic_names_link">{{ topic.name }}</a></h3>
     </div>
     {% endfor %}
 </div>
