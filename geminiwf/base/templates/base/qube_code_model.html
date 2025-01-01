@@ -159,11 +159,49 @@
         height: 35px;
         width: 45%;
         margin-left: 5%;
+        font-size: 20px;
+
 
     }
 
     #qube_generate_code_confrim {
         margin-left: 5%;
+        padding: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: white;
+        background-color: springgreen;
+        border-style: none;
+        border-radius: 5px;
+        cursor: pointer;
+
+    }
+
+    #chat_user_chat_input_code {
+        text-decoration: none;
+        color: springgreen;
+        transition: all 0.3s ease;
+
+
+    }
+
+    #chat_user_chat_input_code:hover {
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        transform: scale(0.5);
+
+    }
+
+    #del_btn_code_query {
+        text-decoration: none;
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        font-weight: 700;
+        background-color: springgreen;
+        cursor: pointer;
     }
 </style>
 
@@ -195,10 +233,11 @@
         </form>
         <br>
         <hr>
-        <div>
+        <div style="color: white;">
+
             {% for code in qube_code_query %}
             <div>
-                <p>{{ code|safe }}</p>
+                <p style="color: white;">{{ code|safe }}</p>
             </div>
             {% endfor %}
         </div>
@@ -211,8 +250,9 @@
             <div>
                 <ul>
                     <li>
-                        <h3><a href="{% url 'qubeCodeFullRes' chat.id %}">{{ chat.user_input_prompt }}</a></h3>
-                        <a href="{% url 'deleteQubeCode' chat.id %}">Delete</a>
+                        <h3><a href="{% url 'qubeCodeFullRes' chat.id %}" id="chat_user_chat_input_code">
+                                {{ chat.user_input_prompt }}</a></h3>
+                        <a href="{% url 'deleteQubeCode' chat.id %}" id="del_btn_code_query">Delete</a>
                         <hr>
                     </li>
                 </ul>

@@ -1,3 +1,19 @@
+<style>
+    #go_back_btn_code {
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+        font-weight: 700;
+        border: 2px solid springgreen;
+        padding: 10px;
+        background-color: springgreen;
+        border-radius: 5px;
+        cursor: pointer;
+
+
+    }
+</style>
+
 {% extends 'main.html' %}
 
 {% block content %}
@@ -6,11 +22,14 @@
 
 <div>
     <div>
-        <button><a href="{% url 'qubeCodeModel' %}">Go Back</a></button>
+        <br>
+        <br>
+        <a href="{% url 'qubeCodeModel' %}" id="go_back_btn_code">Go Back</a>
     </div>
-    <div>
-        <h3>{{ qube_code_full.user_input_prompt }}</h3>
-        <p>{{ qube_code_full.model_response }}</p>
+    <div
+        style="border: 2px solid springgreen; justify-items: center; margin-top: 5%; padding: 20px; border-radius: 10px; ">
+        <h3 style="color: white; font-size: 25px;">{{ qube_code_full.user_input_prompt }}</h3>
+        <p style="color: white;">{{ qube_code_full.model_response }}</p>
     </div>
 </div>
 
