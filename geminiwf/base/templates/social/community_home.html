@@ -19,7 +19,7 @@
         font-size: 20px;
         font-weight: 700;
         background-color: springgreen;
-        margin-left: 15px;
+        margin-left: 10px;
     }
 </style>
 
@@ -56,11 +56,11 @@
         <h1
             style="color: white; border: 2px solid springgreen; margin-left: 10px; padding: 5px; border-radius: 5px; padding-left: 30%;">
             QUBE COMMUNITY</h1>
-        <p style="color:springgreen; font-weight: 700; margin-left: 15px;">{{ room_count }} rooms available</p>
+        <p style="color:springgreen; font-weight: 700; margin-left: 10px;">{{ room_count }} rooms available</p>
         <a href="{% url 'communityCreateRoom' %}" id="creating_community_room_link">Create Community Room</a>
         <br>
         <br>
-        <hr>
+
         <div>
             <div>
                 {% include 'social/community_feed_component.html' %}

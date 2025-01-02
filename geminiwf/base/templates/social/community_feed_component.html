@@ -47,7 +47,7 @@
 <div>
     {% for room in rooms %}
 
-    <div>
+    <div style="margin-left: 8px;">
         <p><a href="{% url 'communityUserProfile' room.host.id  %}" id="room_host_username">
                 @{{ room.host.username }}</a></p>
         <h2><a href="{% url 'communityRoom' room.id %}" id="room_name_open_link">{{ room.name }}</a></h2>
@@ -56,7 +56,7 @@
         <a href="{% url 'updateCommunityRoom' room.id %}">Edit community Room</a>
         <a href="{% url 'deleteCommunityRoom' room.id %}">| Delete</a>
         {% endif %}
-        <hr>
+        <hr style="color: springgreen;">
     </div>
 
     {% endfor %}
