@@ -1,12 +1,41 @@
+<style>
+    #activity_message_user_profile {
+        text-decoration: none;
+        color: springgreen;
+        font-weight: 700;
+        transition: all 0.3s ease;
+    }
+
+    #activity_message_user_profile:hover {
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 3px;
+        transform: scale(0.5);
+
+    }
+
+    #activity_feed_heading {
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 10px;
+        padding-left: 15%;
+    }
+</style>
+
 <div>
-    <h2>ACTIVITY FEED</h2>
+    <h2 id="activity_feed_heading">ACTIVITY FEED</h2>
     <hr>
     {% for message in room_messages %}
-    <div>
-        <small><a href="{% url 'communityUserProfile' message.user.id %}">@{{ message.user }}</a>
+    <div style="margin-left: 8px;">
+        <small style="color: white;"><a href="{% url 'communityUserProfile' message.user.id %}"
+                id="activity_message_user_profile">
+                @{{ message.user }}</a>
             {{ message.created|timesince }} ago</small>
-        <small>replied to <i><strong>"{{ message.room }}"</strong></i></small>
-        <p>{{ message.body }}</p>
+        <small style="color: white;">replied to <i><strong>"{{ message.room }}"</strong></i></small>
+        <p style="color: springgreen;">{{ message.body }}</p>
         {% if message.user_visual_query %}
         <div>
             {% with filename=message.user_visual_query.name %}
