@@ -37,9 +37,6 @@ load_dotenv()
 
 gemini_api_key = os.getenv("GEMINI_API_KEY")
 
-# google gemini api key
-# gemini_api_key = 'AIzaSyDVkDQ7HQxueEbU3061dW31Wt2f5yzBsWQ'
-
 
 # for login the user
 
