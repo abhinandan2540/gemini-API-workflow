@@ -16,16 +16,26 @@
         {% include 'social/Models_component_social.html' %}
     </div>
     <div>
-        <h1>Community Room Form</h1>
+        <h1 style="color: white;border: 2px solid springgreen;padding: 5px;border-radius: 5px;padding-left: 30%;">Edit
+            Community Room</h1>
         <hr>
-        <form action="" method="POST">
-            {% csrf_token %}
+        <div style="border: 2px solid springgreen; padding: 50px; border-radius: 5px;">
+            <div style="padding-left: 35%; color: white; font-size: 20px; font-weight: 700;">
+                <form action="" method="POST">
+                    {% csrf_token %}
 
-            {{ form.as_p }}
-
-            <input type="submit" value="Confrim">
-            <button><a href="{% url 'communityHome' %}">Discard</a></button>
-        </form>
+                    {{ form.as_p }}
+                    <div>
+                        <input type="submit" value="Confrim"
+                            style="color: white; border: 2px solid springgreen; padding: 5px; border-radius: 3px; font-weight: 700; background-color: springgreen; cursor: pointer;">
+                        <button
+                            style="padding: 7px; border-radius: 3px; background-color: springgreen; border-style: none; font-weight: 700;"><a
+                                href="{% url 'communityHome' %}"
+                                style="text-decoration: none; color: white;">Discard</a></button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 </div>
