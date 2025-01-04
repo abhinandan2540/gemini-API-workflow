@@ -40,6 +40,27 @@
         width: 15%;
 
     }
+
+    #edit_btn_feed_component {
+        text-decoration: none;
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 3px;
+        font-weight: 700;
+        background-color: springgreen;
+
+    }
+
+    #delete_btn_feed_component {
+        text-decoration: none;
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 3px;
+        font-weight: 700;
+        background-color: springgreen;
+    }
 </style>
 
 
@@ -53,8 +74,8 @@
         <h2><a href="{% url 'communityRoom' room.id %}" id="room_name_open_link">{{ room.name }}</a></h2>
         <p id="room_topic_name_p">{{ room.topic.name }}</p>
         {% if request.user == room.host %}
-        <a href="{% url 'updateCommunityRoom' room.id %}">Edit community Room</a>
-        <a href="{% url 'deleteCommunityRoom' room.id %}">| Delete</a>
+        <a href="{% url 'updateCommunityRoom' room.id %}" id="edit_btn_feed_component">Edit community Room</a>
+        <a href="{% url 'deleteCommunityRoom' room.id %}" id="delete_btn_feed_component">Delete</a>
         {% endif %}
         <hr style="color: springgreen;">
     </div>
