@@ -13,6 +13,56 @@
         padding-left: 26%;
 
     }
+
+    #del_btn_community_room {
+        text-decoration: none;
+        color: white;
+        font-weight: 800;
+
+
+    }
+
+    #message_user_name {
+        color: springgreen;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 15px;
+
+    }
+
+    #message_user_name:hover {
+        color: white;
+        cursor: pointer;
+
+    }
+
+    #user_text_query_input_box {
+        height: 35px;
+        width: 55%;
+        font-size: 16px;
+    }
+
+    #confrim_button_comm_room {
+        font-weight: 700;
+        padding: 7px;
+        color: white;
+        background-color: springgreen;
+        border-radius: 3px;
+        border-style: none;
+        cursor: pointer;
+
+    }
+
+    #user_profile_participants_section {
+        text-decoration: none;
+        color: white;
+        font-weight: 800;
+    }
+
+    #user_profile_participants_section:hover {
+        color: springgreen;
+
+    }
 </style>
 
 {% extends 'main.html' %}
@@ -33,22 +83,28 @@
 
     <div>
         <h1 id="community_room_section_heading">COMMUNITY ROOM</h1>
-        <hr>
-        <h1>{{ room }}</h1>
-        <hr>
+
+        <h1 style="color:springgreen;  padding-left: 15px;">
+            {{ room }}</h1>
+
         <div>
-            <h2>Conversations</h2>
-            <hr>
+            <h2
+                style="color: white; border: 2px solid springgreen; margin-left: 10px; padding: 5px; border-radius: 5px; padding-left: 38%;">
+                Conversations</h2>
+
             <div>
                 {% for message in room_messages %}
                 <div>
 
                     {% if request.user == message.user %}
-                    <p><a href="{% url 'deleteCommunityMessage' message.id %}">Delete</a></p>
+                    <p><a href="{% url 'deleteCommunityMessage' message.id %}" id="del_btn_community_room">Delete</a>
+                    </p>
                     {% endif %}
-                    <p><a href="{% url 'communityUserProfile' message.user.id %}">@{{ message.user }}</a>
+                    <p style="color: white;"><a href="{% url 'communityUserProfile' message.user.id %}"
+                            id="message_user_name">
+                            @{{ message.user }}</a>
                         {{ message.created|timesince }} ago</p>
-                    <p>{{ message.body }}</p>
+                    <p style="color: white;">{{ message.body }}</p>
                     {% if message.user_visual_query %}
                     <div>
                         {% with filename=message.user_visual_query.name %}
@@ -91,9 +147,10 @@
                 <form action="" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
 
-                    <input type="text" placeholder="Message Community..." name="user_text_query">
+                    <input type="text" placeholder="Message Community..." name="user_text_query"
+                        id="user_text_query_input_box">
                     <input type="file" name="user_visual_query" accept="image/*,video/*,audio/*" multiple>
-                    <input type="submit" value="Confrim">
+                    <input type="submit" value="Confrim" id="confrim_button_comm_room">
                 </form>
             </div>
             {% endif %}
@@ -105,11 +162,14 @@
 
 
     <div>
-        <h2>PARTICIPANTS</h2>
-        <hr>
+        <h2
+            style="color: white; border: 2px solid springgreen; padding: 5px; margin-left: 10px; padding-left: 15%; border-radius: 5px;">
+            PARTICIPANTS</h2>
+
         {% for user in participants %}
-        <div>
-            <p><a href="{% url 'communityUserProfile' user.id %}">@{{ user.username }}</a></p>
+        <div style="margin-left: 15px;">
+            <p><a href="{% url 'communityUserProfile' user.id %}" id="user_profile_participants_section">
+                    @{{ user.username }}</a></p>
         </div>
         {% endfor %}
     </div>
