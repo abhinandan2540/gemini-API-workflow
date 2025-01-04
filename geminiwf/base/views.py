@@ -30,10 +30,15 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import TextModelHistory, ImageModelHistory, interactiveChatHistory
 from .models import QubeVisionImgHistory, QubeVideoModelHistory, QubeAudioModelHistory
 from .models import QubeCodeModelHistory
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+
+gemini_api_key = os.getenv("GEMINI_API_KEY")
 
 # google gemini api key
-gemini_api_key = 'AIzaSyDVkDQ7HQxueEbU3061dW31Wt2f5yzBsWQ'
+# gemini_api_key = 'AIzaSyDVkDQ7HQxueEbU3061dW31Wt2f5yzBsWQ'
 
 
 # for login the user
