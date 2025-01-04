@@ -3,6 +3,16 @@
         display: grid;
         grid-template-columns: 1fr 3fr;
     }
+
+    #delete-community-room_heading {
+        color: white;
+        border: 2px solid springgreen;
+        padding: 5px;
+        border-radius: 5px;
+        padding-left: 30%;
+
+
+    }
 </style>
 
 
@@ -17,15 +27,24 @@
     </div>
 
     <div>
-        <h1>Delete Community Room</h1>
+        <h1 id="delete-community-room_heading">Delete Community Room</h1>
         <hr>
-        <form action="" method="POST">
-            {% csrf_token %}
+        <div
+            style="border: 2px solid springgreen; justify-self: center; padding: 50px; margin-top: 5%; border-radius: 10px;">
+            <form action="" method="POST">
+                {% csrf_token %}
 
-            <h3>Are you want to delete this {{ obj }}?</h3>
-            <input type="submit" value="Confrim">
-            <button><a href="{{ request.META.HTTP_REFERER }}">Go Back</a></button>
-        </form>
+                <h3 style="color: white; font-size: 25px;">Are you want to delete : {{ obj }}?</h3>
+                <div style="display: flex; justify-content: space-between; height: 35px;">
+                    <input type="submit" value="Confrim"
+                        style="font-size: 15px; background-color: springgreen; border-radius: 3px; border-style: none; color: white;font-weight: 700; cursor: pointer;">
+                    <button
+                        style="font-size: 15px; background-color: springgreen; border-radius: 3px; border-style: none; "><a
+                            href="{{ request.META.HTTP_REFERER }}"
+                            style="text-decoration: none; color: white; font-weight: 700;">Go Back</a></button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

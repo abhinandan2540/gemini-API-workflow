@@ -6,7 +6,7 @@ from django.forms import ModelForm
 class RoomForm(ModelForm):
     class Meta:
         model = Room
-        fields = '__all__'
+        fields = ['topic', 'name']
 
 # fields all : i am taking all the fields ( params ) of the class ROOM model like the hsot , etc etc, in future i can excute and take the specified like [' name',' topic'] etc
 
