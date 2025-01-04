@@ -4,6 +4,16 @@ PROJECT QUBE
 Project QUBE, is a Web app , that is build with Gemini API Key (gemini-1.5-flash) and Python Django .
 In this Project "Gemini API Key" is used as a Logic server for rendering out the input data's from the user, and Django is used as a backend. QUBE is a blend of both.
 
+Live example of Project QUBE
+-----------------------------
+
+
+
+https://github.com/user-attachments/assets/99e89a22-f575-4ebd-94ec-9d223f4a3498
+
+
+
+
 Project QUBE
 The front Page of QUBE Web looks like this:::
 ![Screenshot 2025-01-04 172033](https://github.com/user-attachments/assets/efc2a2b4-9ec7-4818-8f8d-3f4b13345a88)
